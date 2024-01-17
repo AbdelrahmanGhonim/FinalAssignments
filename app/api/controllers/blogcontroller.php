@@ -1,7 +1,6 @@
 <?php
 namespace App\Controllers;
 
-//require __DIR__ . '/../../services/blogservice.php';
 use App\Services\BlogService;
 class BlogController
 {

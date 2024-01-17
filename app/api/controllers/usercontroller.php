@@ -58,21 +58,6 @@ class UserController
           // Validate and sanitize data before updating
           $sanitizedData = $this->sanitizeUserData($decodedData);
 
-        //   if (isset($sanitizedData['password'])) {
-        //     $currentPassword = $this->userService->getUserPassword($sanitizedData['user-id']); // Fetch current hashed password from the database
-    
-        //     if ($currentPassword !== null) {
-        //         if (!password_verify($sanitizedData['password'], $currentPassword)) {
-        //             // Password has changed, rehash it
-        //             $hashedPassword = password_hash($sanitizedData['password'], PASSWORD_DEFAULT);
-        //             $sanitizedData['password'] = $hashedPassword;
-        //         }
-        //     } else {
-        //         // Handle the case when user with given ID is not found
-        //         echo json_encode(['error' => 'User not found.']);
-        //         return;
-        //     }
-        // }
         
           error_log('Server Response: ' . json_encode($sanitizedData));
         
