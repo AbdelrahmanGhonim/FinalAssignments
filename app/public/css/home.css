@@ -1,0 +1,38 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: rgb(255, 253, 253);
+}
+
+.background-image {
+    background-image: url('../img/image2.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 80vh; /* Set the height to cover the entire viewport */
+    width: 99vw; /* Set the width to cover the entire viewport */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.intro-container {
+    text-align: center;
+    color: white;
+}
+
+.intro-text {
+    z-index: 1;
+}
+.header-text{
+    margin-top: 5%;
+    color: black;
+    font-size: 3rem;
+    font-style: initial;
+    
+}
+p{
+    color: black;
+    max-width: 850px;
+    margin-left: 22rem;
+    margin-top: 1px;
+}

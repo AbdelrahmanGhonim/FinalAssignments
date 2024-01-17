@@ -1,0 +1,48 @@
+.background-image{
+display: flex;
+height: auto;
+min-height: 70vh;
+justify-content: center;
+align-items: center;
+background-color: #1a1a1b;
+background-image: url('../img/introImage.jpg');
+background-position: 50% 50%;
+background-size: cover;
+opacity: 1;
+filter: brightness(84%) contrast(118%);
+text-align: center;
+color: white;
+flex-direction: column;
+}
+
+ .blog-imageSection1 img {
+  width: 500px;
+  max-width: 100%; 
+  float: right;
+}
+
+.blog-text p {
+  color: red;
+  width: 300px;
+}
+.row {
+
+  margin-top: 20px;
+}
+
+.blog-imageSection2 img{
+
+  width: 100%;
+    max-width: 100%;
+    height: 500px;
+    margin-bottom: 10px;
+    
+}
+
+.blog-text2 p{
+
+  width: 450px;
+  margin-left: 90px;
+} 
+
+
