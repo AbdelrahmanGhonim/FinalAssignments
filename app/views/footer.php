@@ -1,4 +1,4 @@
-<footer class="footer-wrapper">
+<footer class="footer-wrapper bg-dark">
     <h2>Fitness App</h2>
     <p><a href="mailto:info@fitnesapp.com">info@fitnesapp.com</a></p>
 </footer>

@@ -1,9 +1,8 @@
-/*
 body {
   box-sizing: content-box;
   margin: 0;
   padding: 0;
-  background-color: rgb(255, 253, 253);
+  background-color: #000000;
 }
 
 .fa-navbar h1, h2, h3 {
@@ -11,7 +10,7 @@ body {
 }
 
 /* HERO */
-/*
+
 .fa-hero {
   display: flex;
   height: auto;
@@ -48,9 +47,9 @@ body {
 }
 
 /* nav */
-/*
+
 .fa-navbar {
-background-color: #f8f8f8;
+background-color: #000000;
 font-weight: 700;
 }
 
@@ -65,10 +64,10 @@ font-weight: 700;
 }
 
 /* typography */
-/*
+
 main {
   line-height: 1.5;
-  color: #333;
+  color: #ffffff;
 }
 
 main h2 {
@@ -76,7 +75,6 @@ main h2 {
   font-weight: 700;
   max-width: 80vw;
   margin: 100px 0 40px;
-  color: #1a1a1b;
   font-size: 45px;
   line-height: 1.2;
 }
@@ -89,7 +87,7 @@ main h3 {
 }
 
 /* img */
-/*
+
 main img.width-75 {
   max-width: 75%;
   height: auto;
@@ -113,9 +111,8 @@ main img.width-75 {
 }
 
 /* footer */
-/*
+
 .footer-wrapper {
-  background-color: #1a1a1b;
   color: #ffffff;
   padding: 40px 0;
   text-align: center;
