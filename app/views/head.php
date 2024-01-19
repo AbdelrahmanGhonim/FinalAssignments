@@ -30,9 +30,9 @@ if (!str_starts_with($currentPage, 'api/')) {
         case 'blog':
             $cssFile = 'blog.css';
             break;
-            case 'progresstracker':
-              $cssFile = 'ProgressTracker.css';
-              break;
+        case 'progresstracker':
+            $cssFile = 'ProgressTracker.css';
+            break;
         // Add more cases for other pages as needed
         default:
             $cssFile = $defaultCssFile;

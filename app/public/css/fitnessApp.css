@@ -68,6 +68,7 @@ font-weight: 700;
 main {
   line-height: 1.5;
   color: #ffffff;
+  padding: 40px 0;
 }
 main h2, main h3, main h3, main h4, main h5, main h6 {
   font-weight: 700;
@@ -76,7 +77,7 @@ main h2, main h3, main h3, main h4, main h5, main h6 {
 main h2 {
   font-size: 40px;
   max-width: 80vw;
-  margin: 100px 0 40px;
+  margin: 0 0 40px;
   font-size: 45px;
   line-height: 1.2;
 }
@@ -112,6 +113,21 @@ main img.width-75 {
   main h3 {
       margin-top: 35px;
   }
+}
+
+/* forms */
+
+form {
+  padding: s40px 0;
+}
+
+label {
+  font-weight: 700;
+  margin: 10px 0 6px 6px;
+}
+
+.fa-form-group {
+  margin-bottom: 20px;
 }
 
 /* footer */
