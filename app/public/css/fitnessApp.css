@@ -118,7 +118,8 @@ main img.width-75 {
 /* forms */
 
 form {
-  padding: s40px 0;
+  padding: 40px 0;
+  max-width: 512px;
 }
 
 label {
