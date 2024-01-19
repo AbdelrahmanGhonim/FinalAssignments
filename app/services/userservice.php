@@ -33,9 +33,13 @@ class UserService{
     {
         try {
             $user = $this->convertArrayToUser($userData);
-            
+        
             // Now you can pass $user to the repository layer for updating
             $this->userRepository->updateUserInfo($user);
+          //  session_start();
+            $this->updateSessions($userData);
+          
+          
         } catch (\Exception $e) {
             // Handle the exception (log, show an error message, etc.)
             echo 'Error updating user information: ' . $e->getMessage();
@@ -53,6 +57,7 @@ class UserService{
                 throw new \Exception("Missing key in user data: $key");
             }
         }
+
     
         // Create a User instance and set additional properties
         $user = new User(
@@ -63,13 +68,26 @@ class UserService{
             $userData['weight'],
             $userData['height'],
             $userData['goal'],
-          //  $userData['caloriesIntake'],
-            //$userData['bmrInfo']
+            
         );
+       $_SESSION["caloriesIntake"]=htmlspecialchars($user->getCaloriesIntake());      
+        
 
-        if (!password_verify($userData['password'], $userData['password'])) {
-          $user->setPassword($userData['password']);
-        }
+        TODO: //check if the password is the same as the one in the database. if it is, then don't hash it again. This WRONG.
+        // if (!password_verify($userData['password'], $userData['password'])) {
+        //   $user->setPassword($userData['password']);
+        // }
+        // if (!password_verify($userData['password'], $user->getPassword())) {
+        //     $hashedPassword = password_hash($userData['password'], PASSWORD_DEFAULT);
+        //     $user->setPassword($hashedPassword);
+        // }
+        // session_start();
+        // if (isset($userData['caloriesIntake'])) {
+        //     $user->setCalculateCaloriesIntake($userData['caloriesIntake']);
+        // }
+        // if(isset($user->getCaloriesIntake())){
+        //     $user->setCaloriesIntake($userData['caloriesIntake']);
+        // }
   
         //can you set the id??
         $user->setUserId($userData['user-id']);
@@ -77,6 +95,22 @@ class UserService{
     
         return $user;
     }
+
+    private function updateSessions($data){
+        try{
+           // session_start();
+        
+        $_SESSION["user_name"] = htmlspecialchars($data['username']);// for displaying in the nav bar.
+    //    $_SESSION["caloriesIntake"] =htmlspecialchars($data['caloriesIntake']);
+        $_SESSION["goal"] =htmlspecialchars($data['goal']);
+        $_SESSION["weight"] =htmlspecialchars($data['weight']);
+        }
+        catch (\Exception $e) {
+            // Handle the exception (log, show an error message, etc.)
+            echo 'Error upgrading session data: ' . $e->getMessage();
+        }
+
+     }
     
     
     
