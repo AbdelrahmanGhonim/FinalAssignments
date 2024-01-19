@@ -1,7 +1,7 @@
 
 
-.wide-card {
-    width: 700px;
+.fa-wide-card {
+    max-width: 700px;
     margin: 50px auto;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0,0,0,0.15);
@@ -9,13 +9,13 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-
+    padding: 10px;
 }
-.card-body{
 
+.fa-card-body {
   background-color: white;
 }
-.circle {
+.fa-circle {
     width: 120px;
     height: 120px;
     border-radius: 50%;
@@ -27,7 +27,7 @@
     font-weight: bold;
 }
 
-.caloriesIntake{
+.fa-caloriesIntake{
 
   font-size: 24px;
   color: white;
@@ -38,18 +38,23 @@
   margin-bottom: 10px;
 }
  
-.card-text{
-
+.fa-card-text{
   color: black;
   font-size: 20px;
   font-weight: semi-bold;
   text-align: left;
   opacity: 0.4;
-
-
 }
-.session-info {
-      display: flex;
+
+.fa-session-info {
+    display: flex;
     justify-content: space-between;
     margin-top: 10px;
+    flex-direction: column;
+}
+
+@media (min-width: 425px) { 
+  .fa-session-info {
+    flex-direction: row;
+  }
 }
