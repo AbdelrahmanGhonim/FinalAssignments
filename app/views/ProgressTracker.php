@@ -6,7 +6,42 @@
 
 <main class="container">
     <h1>Progress Tracker</h1>
-    <?php ?>
+    <?php if (isset($SESSION_user_name)) { ?>
+    <div>
+        <section class="card fa-wide-card">
+            <div class="fa-card-body">
+                <h2 class="card-title">Calories</h2>
+                <div class="fa-session-info">
+                    <p class="session-goal">
+                        Goal: <?php echo $_SESSION['goal']; ?>
+                    </p>
+                    <p class="session-weight">
+                        Weight: <?php echo $_SESSION['weight']; ?>
+                    </p>
+                </div>
+                <p class="fa-card-text">
+                    Remaining = Goal - Food + Exercise
+                </p>
+                <div class="fa-circle">
+                    <p class="fa-caloriesIntake">
+                        <?php echo $_SESSION['caloriesIntake']; ?>
+                    </p>
+                </div>
+            </div>
+        </section>
+        <p>* This calculation based on 100g per each</p>
+        <table class="table" id="nutritionTable">
+            <thead>
+                <tr>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+    <? } ?>
+
+    
     <div>
         <section class="card fa-wide-card">
             <div class="fa-card-body">
