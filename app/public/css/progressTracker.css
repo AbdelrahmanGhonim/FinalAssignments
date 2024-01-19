@@ -1,0 +1,55 @@
+
+
+.wide-card {
+    width: 700px;
+    margin: 50px auto;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.15);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+}
+.card-body{
+
+  background-color: white;
+}
+.circle {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background-color:rgb(45, 39, 39);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.caloriesIntake{
+
+  font-size: 24px;
+  color: white;
+  font-style: bold;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+ 
+.card-text{
+
+  color: black;
+  font-size: 20px;
+  font-weight: semi-bold;
+  text-align: left;
+  opacity: 0.4;
+
+
+}
+.session-info {
+      display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}

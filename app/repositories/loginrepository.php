@@ -6,39 +6,39 @@ use PDO;
 use App\Models\User;
 class LoginRepository extends Repository{
 
-     public function authenticateUser($username, $password) // loginMethod
-    {
+   // TODO:check if the userName capital or small letter also
+    public function authenticateUser($username, $password) {
         try {
             // Prepare the SQL statement
             $stmt = $this->connection->prepare("
-                SELECT * FROM users
+                SELECT id, userName, password, age, gender, weight, height, bmrInfo, goal, caloriesIntake
+                FROM users
                 WHERE userName = :username
             ");
-
+    
             // Bind parameters
             $stmt->bindParam(':username', $username);
-
+    
             // Execute the statement
             $stmt->execute();
-        
-
-            // Fetch the user data
+    
+            // Fetch the user data (including the password)
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
-
-            // Check if the user exists
+    
+            // Check if the user exists and the password is correct
             if ($user && password_verify($password, $user['password'])) {
                 // User is authenticated
-                return true;
+                return $user; // Return user data if needed
             } else {
                 // User authentication failed
                 return false;
             }
         } catch (\PDOException $e) {
             // Handle the exception (log, show an error message, etc.)
-            echo 'Error authenticating user: ' . $e->getMessage();
-            return false;
+            throw new \Exception('Error authenticating user: ' . $e->getMessage());
         }
     }
+    
    
     
 }

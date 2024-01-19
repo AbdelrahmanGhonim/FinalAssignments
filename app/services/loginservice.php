@@ -14,7 +14,7 @@ class LoginService{
         $this->loginRepository=new LoginRepository();
        // echo "LoginService layer in the house";
     }
-    public function authenticateUser($username, $password)
+    public function authenticateUser($username, $password) //service layer
     {
         // Call the repository method to check the username and password
         return $this->loginRepository->authenticateUser($username, $password);

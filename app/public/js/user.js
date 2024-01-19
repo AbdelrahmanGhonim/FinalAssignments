@@ -96,6 +96,9 @@ document.addEventListener('DOMContentLoaded', function () {
             const parsedData = JSON.parse(data);
            
             if (isUpdate) {
+                // can you display a message to the user that the update was successful like a toast pop up message
+                
+
                 loadData();
                                 
             }

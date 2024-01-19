@@ -25,7 +25,7 @@ class User implements \JsonSerializable{
             $this->weight = $weight;
             $this->height = $height;
             $this->setGoal($goal);
-            $this->caloriesIntake =$this->calculateCaloriesIntake();
+            $this->caloriesIntake =$this->calculateCaloriesIntake();// should called setCaloriesIntake TODO:
             $this->bmrInfo = $this->calculateBMR();
         }
         public function getPassword()
@@ -169,6 +169,7 @@ class User implements \JsonSerializable{
                     return $bmr; // Default to BMR if goal is not recognized
             }
         }
+       
         public function jsonSerialize():mixed
         {
             $vars=get_object_vars($this);

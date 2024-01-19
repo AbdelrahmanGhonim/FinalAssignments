@@ -2,7 +2,6 @@
 namespace App\Controllers;
 
 use App\Services\UserService;
-use App\Models\User;
 
 class UserController
 {
@@ -48,23 +47,23 @@ class UserController
 
     public function update()
       {
+        session_start();
 
           // Handle POST request for updating user information
           header('Content-Type: application/json');
-
           $jsonData = file_get_contents('php://input');
           $decodedData = json_decode($jsonData, true);
 
           // Validate and sanitize data before updating
           $sanitizedData = $this->sanitizeUserData($decodedData);
-
-        
+            
           error_log('Server Response: ' . json_encode($sanitizedData));
         
           echo json_encode($sanitizedData);
 
           // Now, $sanitizedData contains the sanitized form data
           $this->userService->updateUser($sanitizedData);
+          
         
       }
 
@@ -79,8 +78,8 @@ class UserController
       $data['height'] = filter_var($data['height'], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
       $data['weight'] = filter_var($data['weight'], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
       $data['goal'] = filter_var($data['goal'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-      
 
+    
       return $data;
     }
      

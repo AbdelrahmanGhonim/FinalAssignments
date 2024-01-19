@@ -14,33 +14,52 @@ class LoginController{
     }
 
     public function index(){
-
         include '../views/login/index.php';
 
     }
+
+   
     // Example method in LoginController.php
+    // TODO: Check if the method is public or private in all!!!!!!!!!!!!!!!!!!!!!
+
     public function authenticate()
     {
         // Get the username and password from the form submission
-        $username = $_POST['username'];
-        $password = $_POST['password'];
+        $username =$this->validate($_POST['username']);
+        $password =$this->validate($_POST['password']);
 
         // Call the service method to authenticate the user
-        $isAuthenticated = $this->loginService->authenticateUser($username, $password);
-        //session_start();
-        if ($isAuthenticated) {
-            
-            session_start();
-            $_SESSION["user_name"] = htmlspecialchars($username);// for displaying in the nav bar.
-            header("Location: /"); 
-    
-            exit();
-        } else {
-        
-            $_SESSION["user_name"] = 'Guest';
+        $userAuthenticated= $this->loginService->authenticateUser($username, $password);
 
+        if ($userAuthenticated) {    
+            session_start();            
+        
+            $_SESSION["user_name"] = htmlspecialchars($username);// for displaying in the nav bar.
+            $_SESSION["caloriesIntake"] =htmlspecialchars($userAuthenticated['caloriesIntake']);
+            $_SESSION["goal"] =htmlspecialchars($userAuthenticated['goal']);
+            $_SESSION["weight"] =htmlspecialchars($userAuthenticated['weight']);
+          
+
+            header("Location: /"); // navigate to the home page
+            exit();
+
+        } else {
+           // session_start();            
+        
+          //  $_SESSION["user_name"] = 'Guest';
+            $error = 'Invalid username or password.';
+            echo "<script type='text/javascript'>
+            alert('Invalid username or password.');
+            window.location.href = '/login'; 
+          </script>";
             $this->index();// still in the login page
         }
+    }
+    private function validate($data) {
+        $data = trim($data);
+        $data = stripslashes($data);
+        $data = htmlspecialchars($data);
+        return $data;
     }
 // Example method in LoginController.php
         public function logout()
