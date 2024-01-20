@@ -1,9 +1,14 @@
 <?php
     include __DIR__ . '/../header.php'; 
- ?>
+?>
+
+<header class="fa-hero fa-hero-login">
+    <div class="container">
+        <h1 class="intro-text">Login</h1>
+    </div>
+</header>
 
 <main class="container">
-    <h1>Login</h1>
     <form action="/login/authenticate" method="POST">
         <div class="mb-3">
             <label for="username" class="form-label">Username:</label>
