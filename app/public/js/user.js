@@ -55,66 +55,179 @@ function displayUserInfo(user) {
 
 loadData();
 
+/////////////////////////update user info//////////////////////////////
+// document.addEventListener('DOMContentLoaded', function () {
+//   const signupForm = document.getElementById('signup-form');
 
-document.addEventListener('DOMContentLoaded', function () {
-  const signupForm = document.getElementById('signup-form');
+//   signupForm.addEventListener('submit', function (event) {
+//       event.preventDefault(); // Prevent the default form submission
 
-  signupForm.addEventListener('submit', function (event) {
-      event.preventDefault(); // Prevent the default form submission
+//       // Collect form data
+//       const formData = new FormData(signupForm);
+//       const formDataObject = {};
+//       formData.forEach((value, key) => {
+//           formDataObject[key] = value;
+//       });
 
-      // Collect form data
-      const formData = new FormData(signupForm);
-      const formDataObject = {};
-      formData.forEach((value, key) => {
-          formDataObject[key] = value;
-      });
+//       // Determine whether it's a signup or update request
+//       // remove the code which is not needed ToDO later
+//       const isUpdate = (signupForm.querySelector('#button').textContent === 'Update');
+//       const apiEndpoint = isUpdate ? 'http://localhost/api/user/update' : 'http://localhost/signup/create';
 
-      // Determine whether it's a signup or update request
-      // remove the code which is not needed ToDO later
-      const isUpdate = (signupForm.querySelector('#button').textContent === 'Update');
-      const apiEndpoint = isUpdate ? 'http://localhost/api/user/update' : 'http://localhost/signup/create';
-
-      // Make an AJAX request to the API
-      fetch(apiEndpoint, {
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(formDataObject),
-      })
-      .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        return response.text(); // Read the raw text content
-    })
-    .then(data => {
-        console.log('Raw Response:', data); // Log the raw response
+//       // Make an AJAX request to the API
+//       fetch(apiEndpoint, {
+//           method: 'POST',
+//           headers: {
+//               'Content-Type': 'application/json',
+//           },
+//           body: JSON.stringify(formDataObject),
+//       })
+//       .then(response => {
+//         if (!response.ok) {
+//             throw new Error('Network response was not ok');
+//         }
+//         return response.text(); // Read the raw text content
+//     })
+//     .then(data => {
+//         console.log('Raw Response:', data); // Log the raw response
     
-        // Parse the response as JSON
-        try {
-            const parsedData = JSON.parse(data);
+//         // Parse the response as JSON
+//         try {
+//             const parsedData = JSON.parse(data);
            
-            if (isUpdate) {
-                // can you display a message to the user that the update was successful like a toast pop up message
+//             if (isUpdate) {
+//                 // can you display a message to the user that the update was successful like a toast pop up message
                 
 
-                loadData();
+//                 loadData();
                                 
+//             }
+//         } catch (error) {
+//           console.log('User data not reloaded.');
+
+//             console.error('JSON Parsing Error:', error);
+//         }
+//     })
+//     .catch(error => {
+//         console.error('Error:', error);
+//         // Handle errors, e.g., show an error message to the user
+//     });
+
+//   });
+// });
+
+
+
+
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    const signupForm = document.getElementById('signup-form');
+    // const deleteButton = document.getElementById('delete-button');
+    //show the button for delete
+    // deleteButton.style.display = 'block';
+    // const updateButton = document.getElementById('update-button');
+    // let isUpdateMode = false;
+
+    signupForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        const formData = new FormData(signupForm);
+        const formDataObject = {};
+        formData.forEach((value, key) => {
+            formDataObject[key] = value;
+        });
+
+        const isUpdate = (signupForm.querySelector('#button').textContent === 'Update');
+        const apiEndpoint = isUpdate ? 'http://localhost/api/user/update' : 'http://localhost/signup/create';
+
+        fetch(apiEndpoint, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formDataObject),
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
             }
-        } catch (error) {
-          console.log('User data not reloaded.');
+            return response.text();
+        })
+        .then(data => {
+            console.log('Raw Response:', data);
 
-            console.error('JSON Parsing Error:', error);
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        // Handle errors, e.g., show an error message to the user
+            try {
+                const parsedData = JSON.parse(data);
+
+                if (isUpdate) {
+                    // Display a message to the user that the update was successful
+                    loadData();
+                }
+            } catch (error) {
+                console.log('User data not reloaded.');
+                console.error('JSON Parsing Error:', error);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        })
+      
     });
-
-  });
 });
+
+
+
+/////////////////////////delete user info//////////////////////////////
+
+// Add an event listener for the delete button
+console.log('User.js file loaded');
+
+const deleteButton = document.getElementById('delete-button');
+console.log('User.js file loaded');
+
+deleteButton.addEventListener('click', function () {
+    console.log('Delete button clicked');
+    // Add code to confirm the deletion, and then make an AJAX request to delete the account
+    // You can show a confirmation dialog or use any other method for user confirmation
+    const confirmed = confirm('Are you sure you want to delete your account?');
+    
+    if (confirmed) {
+        // Make an AJAX request to delete the account
+        fetch('http://localhost/api/user/delete', {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            // Set an empty body for DELETE requests
+            body: JSON.stringify({}),
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.text(); // Read the raw text content
+        })
+        .then(data => {
+            console.log('Raw Response:', data); // Log the raw response
+
+            // Parse the response as JSON
+            try {
+                const parsedData = JSON.parse(data);
+
+                // Display a message to the user that the account was deleted (e.g., toast pop-up)
+                // You can also handle page redirection or any other action after deletion
+            } catch (error) {
+                console.error('JSON Parsing Error:', error);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            // Handle errors, e.g., show an error message to the user
+        });
+    }
+});
+
 
 
 

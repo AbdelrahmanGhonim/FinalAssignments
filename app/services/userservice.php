@@ -46,6 +46,21 @@ class UserService{
             return false;
         }
     }
+    public function deleteUser(array $userData)
+    {
+        try {
+            $user = $this->convertArrayToUser($userData);
+        
+            // Now you can pass $user to the repository layer for updating
+            $this->userRepository->deleteUser($user);
+          
+          
+        } catch (\Exception $e) {
+            // Handle the exception (log, show an error message, etc.)
+            echo 'Error deleting user information: ' . $e->getMessage();
+            return false;
+        }
+    }
     
     private function convertArrayToUser(array $userData): User
     {

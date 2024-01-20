@@ -166,8 +166,22 @@ class UserRepository extends Repository{
         echo 'Error updating user information: ' . $e->getMessage();
         return false;
     }
+}
+public function deleteUser(User $user)
+{
+    try {
+        // Use a prepared statement to delete the user by username
+        $stmt = $this->connection->prepare("DELETE FROM users WHERE username = :username");
+        $stmt->bindParam(':username', $user->getUserName(), PDO::PARAM_STR);
+        $stmt->execute();
 
-    
+        return true; // Return true if deletion is successful
+    } catch (\PDOException $e) {
+        // Handle the exception (log, show an error message, etc.)
+        error_log('Error deleting user: ' . $e->getMessage());
+
+        return false; // Return false if an error occurs
+    }
 }
 
 

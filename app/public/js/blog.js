@@ -22,6 +22,8 @@ function loadData() {
     const blogContents = document.querySelectorAll('.blog-content');
     const blogImages = document.querySelectorAll('.blog-image');
     const blogTitles = document.querySelectorAll('.blog-header');
+    //can you set the blog title with the orange color?
+
 
     // Loop through each blog content element and update the text
     blogContents.forEach((blogContent, index) => {
@@ -32,6 +34,8 @@ function loadData() {
         // Add the title and the image as you did with the content
         if (articles[index] && articles[index].title) {
             blogTitles[index].textContent = articles[index].title;
+           // blogTitles[index].style.color = 'orange';
+
         }
 
         if (articles[index] && articles[index].imageName) {

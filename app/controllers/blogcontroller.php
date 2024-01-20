@@ -13,7 +13,7 @@ class BlogController  {
     }
 
     public function index() {
-        include '../views/blog/blog.php';
+        include '../views/blog.php';
       //  $articles = $this->blogServices->getAllArticles();
     }
 }

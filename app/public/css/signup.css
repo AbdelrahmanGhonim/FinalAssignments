@@ -1,0 +1,46 @@
+body{
+  background-color: #000000;
+  background-image: url('../img/introImage.jpg');
+}
+.container {
+  margin-top: 50px; 
+  color: #000000;
+}
+
+#signup-form {
+  background-color: #fdfdfd; 
+  padding: 20px;
+  border-radius: 10px; 
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+}
+
+h1 {
+  color: #f97007;
+}
+
+.form-group {
+  margin-bottom: 20px; /* Adjust the bottom margin for form groups */
+}
+
+.btn-primary {
+  background-color: #a85e0b; /* Button background color */
+  border-color:  #a85e0b; /* Button border color */
+  margin-left: auto;
+}
+
+.btn-primary:hover {
+  background-color: #b39800; /* Button background color on hover */
+  border-color: #0056b3; /* Button border color on hover */
+}
+
+/* Additional styling for form inputs if needed */
+.form-control {
+  border-radius: 5px; /* Rounded corners for form inputs */
+}
+
+/* Media query to adjust styles for smaller screens if needed */
+@media (max-width: 576px) {
+  #signup-form {
+      padding: 15px; /* Adjust padding for smaller screens */
+  }
+}

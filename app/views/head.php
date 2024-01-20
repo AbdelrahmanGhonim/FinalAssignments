@@ -9,6 +9,7 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fitness App</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/head.css">
 
 <?php
 $currentPage = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
@@ -24,14 +25,27 @@ if (!str_starts_with($currentPage, 'api/')) {
     // Adjust CSS file based on the current page
     switch ($currentPage) {
         case '':
-            $cssFile = 'home.css';
+            $cssFile = 'Home.css';
+          //  echo 'Using home.css for the home page.';
+
+         //   echo 'homepage';
             break;
         case 'blog':
             $cssFile = 'blog.css';
+           // echo 'blog';
             break;
             case 'progresstracker':
               $cssFile = 'ProgressTracker.css';
+               // echo 'progress';
               break;
+              case 'login':
+                $cssFile = 'login.css';
+                 // echo 'progress';
+                break;
+                case 'signup':
+                    $cssFile = 'signup.css';
+                     // echo 'progress';
+                    break;
         // Add more cases for other pages as needed
         default:
             $cssFile = $defaultCssFile;
@@ -39,6 +53,7 @@ if (!str_starts_with($currentPage, 'api/')) {
     }
     // Echo the link to the CSS file
     echo '<link rel="stylesheet" href="css/' . $cssFile . '">';
+
 }
 ?>
 

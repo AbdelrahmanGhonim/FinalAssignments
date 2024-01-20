@@ -17,7 +17,7 @@ class SignUpController
     public function index()
     {
         // Display the sign-up form
-        include '../views/signup/signup.php';
+        include '../views/signup.php';
     }
 
     public function create()

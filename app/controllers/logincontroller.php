@@ -14,7 +14,7 @@ class LoginController{
     }
 
     public function index(){
-        include '../views/login/index.php';
+        include '../views/login.php';
 
     }
 
@@ -69,6 +69,8 @@ class LoginController{
 
             // Unset specific session variables related to the user
             unset($_SESSION["user_name"]);
+            // i need to kill all the session variables
+            session_destroy();
 
 
             // Redirect the user to the login page
