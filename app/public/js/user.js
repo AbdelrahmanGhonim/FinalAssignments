@@ -181,18 +181,14 @@ document.addEventListener('DOMContentLoaded', function () {
 /////////////////////////delete user info//////////////////////////////
 
 // Add an event listener for the delete button
-console.log('User.js file loaded');
 
 const deleteButton = document.getElementById('delete-button');
-console.log('User.js file loaded');
 
 deleteButton.addEventListener('click', function () {
-    console.log('Delete button clicked');
-    // Add code to confirm the deletion, and then make an AJAX request to delete the account
-    // You can show a confirmation dialog or use any other method for user confirmation
+   
     const confirmed = confirm('Are you sure you want to delete your account?');
-    
     if (confirmed) {
+        console.log('User confirmed the deletion.');
         // Make an AJAX request to delete the account
         fetch('http://localhost/api/user/delete', {
             method: 'DELETE',
@@ -214,8 +210,11 @@ deleteButton.addEventListener('click', function () {
             // Parse the response as JSON
             try {
                 const parsedData = JSON.parse(data);
+                console.log('Parsed Response:', parsedData);
 
                 // Display a message to the user that the account was deleted (e.g., toast pop-up)
+                //popup message
+                alert("Your account has been deleted");
                 // You can also handle page redirection or any other action after deletion
             } catch (error) {
                 console.error('JSON Parsing Error:', error);

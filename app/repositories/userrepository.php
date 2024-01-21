@@ -169,6 +169,7 @@ class UserRepository extends Repository{
 }
 public function deleteUser(User $user)
 {
+    echo "delete user ".$user->getUserName();
     try {
         // Use a prepared statement to delete the user by username
         $stmt = $this->connection->prepare("DELETE FROM users WHERE username = :username");

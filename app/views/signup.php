@@ -102,20 +102,18 @@
                 </div>
 
                 <button type="submit" id="button" class="btn btn-primary btn-block">Submit</button>
-                <!-- <button type="button" class="btn btn-primary btn-block" id="delete-button">Delete</button> -->
-
+                 <?php
+                    if (isset($_SESSION["user_name"]) && $_SESSION["user_name"] !== "Guest") {
+                        echo '<button type="button" class="btn btn-primary btn-block" id="delete-button">Delete</button>';
+                        echo '<script src="js/user.js"></script>';
+                    }
+                ?>
 
             </form>
         </div>
     </div>
 </div>
 
-    <?php
-    if (isset($_SESSION["user_name"]) && $_SESSION["user_name"] !== "Guest") {
-        echo '<script src="js/user.js"></script>';
-    }
-
-    ?>
      <?php
     include __DIR__ . '/footer.php';
     ?> 
