@@ -1,6 +1,9 @@
 <?php
     include __DIR__ . '/header.php'; 
  ?>
+ <!-- TODO: ana fi al css b7awl a3ml change ll image mesh radi check the css -->
+   <!-- placeholder bta3 al username lw ktabt 7aga b3d kda n2alt 3la al password mesh hyban tani -->
+
     <header class="fa-hero-login">
     <div class="container">
             <h1 class="intro-text">Login</h1>

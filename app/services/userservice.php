@@ -16,36 +16,26 @@ class UserService{
 
     public function getUserByUserName($userName)
     {
-        // Call the repository method to get the user by username
         return $this->userRepository->getUserByUserName($userName);
     }
 
-    public function getUserById($userId)
-    {
-        return $this->userRepository->getUserById($userId);
-    }
-    public function getUserPassword($userId){
-
-        return $this->userRepository->getUserPassword($userId);
-    }
+  
 
     public function updateUser(array $userData)
     {
         try {
             $user = $this->convertArrayToUser($userData);
         
-            // Now you can pass $user to the repository layer for updating
             $this->userRepository->updateUserInfo($user);
-          //  session_start();
             $this->updateSessions($userData);
           
           
         } catch (\Exception $e) {
             // Handle the exception (log, show an error message, etc.)
-            echo 'Error updating user information: ' . $e->getMessage();
-            return false;
-        }
-    }
+            throw new \Exception('Error updating user information: ' . $e->getMessage());      
+          }
+   }
+
     public function deleteUser(array $userData)
     {
         try {
@@ -57,8 +47,7 @@ class UserService{
           
         } catch (\Exception $e) {
             // Handle the exception (log, show an error message, etc.)
-            echo 'Error deleting user information: ' . $e->getMessage();
-            return false;
+            throw new \Exception('Error deleting user information: ' . $e->getMessage());
         }
     }
     
@@ -72,8 +61,6 @@ class UserService{
                 throw new \Exception("Missing key in user data: $key");
             }
         }
-
-    
         // Create a User instance and set additional properties
         $user = new User(
             $userData['username'], // Correct key is 'username'
@@ -113,12 +100,11 @@ class UserService{
 
     private function updateSessions($data){
         try{
-           // session_start();
-        
+
         $_SESSION["user_name"] = htmlspecialchars($data['username']);// for displaying in the nav bar.
-    //    $_SESSION["caloriesIntake"] =htmlspecialchars($data['caloriesIntake']);
         $_SESSION["goal"] =htmlspecialchars($data['goal']);
         $_SESSION["weight"] =htmlspecialchars($data['weight']);
+        
         }
         catch (\Exception $e) {
             // Handle the exception (log, show an error message, etc.)

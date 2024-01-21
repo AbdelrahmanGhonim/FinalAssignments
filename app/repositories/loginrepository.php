@@ -6,14 +6,13 @@ use PDO;
 use App\Models\User;
 class LoginRepository extends Repository{
 
-   // TODO:check if the userName capital or small letter also
     public function authenticateUser($username, $password) {
         try {
             // Prepare the SQL statement
             $stmt = $this->connection->prepare("
                 SELECT id, userName, password, age, gender, weight, height, bmrInfo, goal, caloriesIntake
                 FROM users
-                WHERE userName = :username
+                WHERE BINARY userName = :username
             ");
     
             // Bind parameters
@@ -28,13 +27,12 @@ class LoginRepository extends Repository{
             // Check if the user exists and the password is correct
             if ($user && password_verify($password, $user['password'])) {
                 // User is authenticated
-                return $user; // Return user data if needed
+                return $user; 
             } else {
                 // User authentication failed
                 return false;
             }
         } catch (\PDOException $e) {
-            // Handle the exception (log, show an error message, etc.)
             throw new \Exception('Error authenticating user: ' . $e->getMessage());
         }
     }

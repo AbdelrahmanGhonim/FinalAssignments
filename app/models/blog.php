@@ -7,7 +7,6 @@ class Blog implements \JsonSerializable
     private $contentType;
     private $title;
     private $content;
-    private $createdAt;
     private $imageName;
 
    
@@ -28,7 +27,6 @@ class Blog implements \JsonSerializable
         $this->content = $content;
     }
 
-    // Getter and setter for $title
     public function getTitle()
     {
         return $this->title;
@@ -57,17 +55,6 @@ class Blog implements \JsonSerializable
         $this->imageName =$imageName ;
     }
 
-
-    // Getter and setter for $createdAt
-    public function getCreatedAt()
-    {
-        return $this->createdAt;
-    }
-
-    public function setCreatedAt($createdAt)
-    {
-        $this->createdAt = $createdAt;
-    }
 
     public function setContentType($contentType) {
         // Check if the provided goal is one of the defined enums

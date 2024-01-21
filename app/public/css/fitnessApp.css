@@ -1,4 +1,4 @@
-body {
+/* body {
   box-sizing: content-box;
   margin: 0;
   padding: 0;
@@ -9,7 +9,6 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
-/* HERO */
 
 .fa-hero {
   display: flex;
@@ -46,7 +45,6 @@ body {
   margin: 1.5rem 0;
 }
 
-/* nav */
 
 .fa-navbar {
 background-color: #121212;
@@ -63,7 +61,6 @@ font-weight: 700;
   padding-bottom: 40px;
 }
 
-/* typography */
 
 main {
   line-height: 1.5;
@@ -91,7 +88,6 @@ main h3 {
   color: #ff6f00;
 }
 
-/* img */
 
 main img.width-75 {
   max-width: 75%;
@@ -115,7 +111,6 @@ main img.width-75 {
   }
 }
 
-/* forms */
 
 form {
   padding: 40px 0;
@@ -131,7 +126,6 @@ label {
   margin-bottom: 20px;
 }
 
-/* footer */
 
 .footer-wrapper {
   color: #ffffff;
@@ -140,4 +134,4 @@ label {
 }
 .footer-wrapper a { 
   color: #fff;
-}
+} */

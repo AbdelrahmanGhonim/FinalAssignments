@@ -18,9 +18,6 @@ class LoginController{
 
     }
 
-   
-    // Example method in LoginController.php
-    // TODO: Check if the method is public or private in all!!!!!!!!!!!!!!!!!!!!!
 
     public function authenticate()
     {
@@ -67,9 +64,7 @@ class LoginController{
             // Start or resume the session
             session_start();
 
-            // Unset specific session variables related to the user
-            unset($_SESSION["user_name"]);
-            // i need to kill all the session variables
+            session_unset();
             session_destroy();
 
 

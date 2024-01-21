@@ -1,6 +1,7 @@
 <?php
     include __DIR__ . '/header.php';
 ?>
+<!-- TODO: MOMEN mmkn t3ml align ll images -->
 
 <div class="background-image">
         <div class="intro-container">
@@ -53,7 +54,7 @@
 
             <div class="col-md-6">
                 <div class="feature">
-                    <img class="image4" src="img/home/image2.jpg" alt="Feature 4">
+                    <img class="image4" src="img/home/image5.jpg" alt="Feature 4">
                     <h2 class="feature-title4">Progress Tracking</h2>
                     <p class="feature-text4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, iste excepturi perspiciatis accusamus odio eaque expedita aliquam blanditiis recusandae magni alias assumenda quia optio nulla tempore vel, quo officia architecto! Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eum itaque impedit provident excepturi deleniti natus nemo nam, totam hic nostrum odit accusamus ab error cupiditate autem omnis doloribus id neque.</p>
                 </div>

@@ -37,7 +37,7 @@ class NutritionFactsService{
                 $foods = $this->nutritionFactRepository->getFoodsByUserGoal($goalId);
                 break;
             default:
-                // Handle unknown goal (optional)
+                // Handle default case
                 $foods = $this->nutritionFactRepository->getFoodsByUserGoal($goalId);
                 break;
         }

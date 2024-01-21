@@ -2,6 +2,7 @@
     include __DIR__ . '/header.php';
 ?>
   
+  <!-- TODO: mmkn t3mal align ll images -->
     <div class="background-image">
             <div class="intro-container">
                 <h1 class="intro-text">Blog</h1>

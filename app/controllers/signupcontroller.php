@@ -7,11 +7,11 @@ use App\Services\SignupService;
 class SignUpController
 {
 
-    private $signupservice;
+    private $signupService;
 
     public function __construct()
     {
-        $this->signupservice = new SignupService();
+        $this->signupService = new SignupService();
     }
     
     public function index()
@@ -38,13 +38,16 @@ class SignUpController
                 $user = new User($userName, $password, $age, $gender, $weight, $height, $goal);
 
                 
-                $this->signupservice->createUser($user);
+                $this->signupService->createUser($user);
 
                 session_start();
                 $_SESSION["user_name"] = htmlspecialchars($userName);
+                $_SESSION["caloriesIntake"] = htmlspecialchars($user->getCaloriesIntake());
+                $_SESSION["goal"] = htmlspecialchars($goal);
+                $_SESSION["weight"] = htmlspecialchars($weight);
             }
 
-            header("Location: /");
+            header("Location: /");//homepage
 
         } catch(\Exception $e) {
             // Display or log the exception details during development
@@ -57,15 +60,15 @@ class SignUpController
 
     public function editProfile()
     {
-        if (isset($_SESSION["user_name"]) && $_SESSION["user_name"] !== "Guest") {
+        //if (isset($_SESSION["user_name"]) && $_SESSION["user_name"] !== "Guest") {
           
          include '../views/signup/signup.php';
 
-        } else {
+     //   } else {
             // If the user is not logged in, redirect to the login page
-            header('location: /login');
-            exit();
-        }
+            // header('location: /login');
+            // exit();
+      //  }
     }
 
 }

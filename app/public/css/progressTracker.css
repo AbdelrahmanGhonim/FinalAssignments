@@ -71,7 +71,7 @@
   color: rgb(196, 94, 11);
   font-style: bold;
   font-weight: bold;
-  text-align: left;
+  text-align: center;
   margin-top: 10px;
   margin-bottom: 10px;
 }
@@ -147,3 +147,19 @@ margin-top: 80px;
 }
 
 
+/* MOMEN HELP ana 3awz al title fel nos w al word-highlighted ykon lonhom orange */
+.word-highlighted {
+  color: orange; /* Set the color of the highlighted word to orange */
+}
+
+.card-body2 {
+  text-align: center; /* Center align the text within the card body */
+  padding: 20px; /* Add some padding for better spacing */
+}
+
+.wide-card {
+  margin-top: 20px; /* Add margin at the top of the card for spacing */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow for a card-like appearance */
+}
+ 
+    

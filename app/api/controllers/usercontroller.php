@@ -72,18 +72,16 @@ class UserController
             header('Content-Type: application/json');
 
             try {
-               // session_start();
+                session_start();
                $jsonData = file_get_contents('php://input');
                 $decodedData = json_decode($jsonData, true);
-      
                     // Delete the user
                     $this->userService->deleteUser($decodedData);
     
                     // Clear session data
-                    // session_unset();
-                    // session_destroy();
+                    session_unset();
+                    session_destroy();
     
-                   // echo json_encode(['success' => 'User deleted successfully.']);
                 
             } catch (\Exception $e) {
                 // Debugging: Log any exceptions

@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-//include 'GoalEnum.php'; cause I created the autoload
 class User implements \JsonSerializable{
 
         private $id;
@@ -34,13 +33,8 @@ class User implements \JsonSerializable{
         }
         public function setPassword($password) {
      
-            if(empty($password)){
+            if(empty($password) || password_needs_rehash($password, PASSWORD_BCRYPT)){
                // echo "the password is empty ";
-                $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
-                $this->password = $hashedPassword;
-                
-            }elseif(password_needs_rehash($password, PASSWORD_BCRYPT)){
-               // echo "the password needs to be rehashed ";
                 $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
                 $this->password = $hashedPassword;
             }
@@ -114,18 +108,25 @@ class User implements \JsonSerializable{
         {
             return $this->goal;
         }
-
+        private function isValidGoal($goal) {
+            $allowedGoals = [GoalEnum::LOSE_WEIGHT, GoalEnum::MAINTAIN_WEIGHT, GoalEnum::BUILD_MUSCLE];
+            return in_array($goal, $allowedGoals);
+        }
         public function setGoal($goal) {
             // Check if the provided goal is one of the defined enums
-            $allowedGoals = [GoalEnum::LOSE_WEIGHT, GoalEnum::MAINTAIN_WEIGHT, GoalEnum::BUILD_MUSCLE];
-            if (in_array($goal, $allowedGoals)) {
-                $this->goal = $goal;
-            } else {
-                // Handle invalid goal (you can throw an exception, set a default, etc.)
-                // For now, I'll set a default value
-                $this->goal =GoalEnum::MAINTAIN_WEIGHT;
-            }
+            $this->goal = $this->isValidGoal($goal) ? $goal : GoalEnum::MAINTAIN_WEIGHT;
         }
+        // public function setGoal($goal) {
+        //     // Check if the provided goal is one of the defined enums
+        //     $allowedGoals = [GoalEnum::LOSE_WEIGHT, GoalEnum::MAINTAIN_WEIGHT, GoalEnum::BUILD_MUSCLE];
+        //     if (in_array($goal, $allowedGoals)) {
+        //         $this->goal = $goal;
+        //     } else {
+        //         // Handle invalid goal (you can throw an exception, set a default, etc.)
+        //         // For now, I'll set a default value
+        //         $this->goal =GoalEnum::MAINTAIN_WEIGHT;
+        //     }
+        // }
         public function getCaloriesIntake()
         {
            return $this->caloriesIntake;
@@ -156,18 +157,29 @@ class User implements \JsonSerializable{
         public function calculateCaloriesIntake()
         {
             // Calories Intake Calculation based on BMR and user's goal
-            $bmr = $this->calculateBMR();
+            // $bmr = $this->calculateBMR();
     
-            switch ($this->goal) {
-                case GoalEnum::LOSE_WEIGHT:
-                    return $bmr - 500; // Example: Reduce 500 calories for weight loss
-                case GoalEnum::MAINTAIN_WEIGHT:
-                    return $bmr; // Maintain current weight
-                case GoalEnum::BUILD_MUSCLE:
-                    return $bmr + 300; // Example: Increase 300 calories for muscle building
-                default:
-                    return $bmr; // Default to BMR if goal is not recognized
-            }
+            // switch ($this->goal) {
+            //     case GoalEnum::LOSE_WEIGHT:
+            //         return $bmr - 500; // Example: Reduce 500 calories for weight loss
+            //     case GoalEnum::MAINTAIN_WEIGHT:
+            //         return $bmr; // Maintain current weight
+            //     case GoalEnum::BUILD_MUSCLE:
+            //         return $bmr + 300; // Example: Increase 300 calories for muscle building
+            //     default:
+            //         return $bmr; // Default to BMR if goal is not recognized
+            // }
+            $bmr = $this->calculateBMR();
+
+            // Use the isValidGoal method to check goal validity
+            return $this->isValidGoal($this->goal) ?
+                match ($this->goal) {
+                    GoalEnum::LOSE_WEIGHT => $bmr - 500,
+                    GoalEnum::MAINTAIN_WEIGHT => $bmr,
+                    GoalEnum::BUILD_MUSCLE => $bmr + 300,
+                    default => $bmr,
+                } :
+                $bmr;
         }
        
         public function jsonSerialize():mixed

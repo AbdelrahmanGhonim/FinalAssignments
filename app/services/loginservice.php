@@ -3,7 +3,6 @@
 
 namespace App\Services;
 
-use App\Models\User;
 use App\Repositories\LoginRepository;
 
 class LoginService{

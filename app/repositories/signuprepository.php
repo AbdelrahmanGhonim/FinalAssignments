@@ -1,7 +1,6 @@
 <?php
 namespace App\Repositories;
 
-use PDO;
 use App\Models\User;
 
 Class SignupRepository extends Repository
@@ -9,11 +8,11 @@ Class SignupRepository extends Repository
   
   public function createUser(User $user) {
     try {
-        $bmrInfo = $user->calculateBMR(); 
-        $caloriesIntake = $user->calculateCaloriesIntake();
+        // $bmrInfo = $user->calculateBMR(); 
+        // $caloriesIntake = $user->calculateCaloriesIntake();
 
-        $user->setBmrInfo($bmrInfo);
-        $user->setCaloriesIntake($caloriesIntake);
+        // $user->setBmrInfo($bmrInfo);
+        // $user->setCaloriesIntake($caloriesIntake);
 
         // Prepare the SQL statement
         $stmt = $this->connection->prepare("
@@ -33,6 +32,11 @@ Class SignupRepository extends Repository
             ':goal' => $user->getGoal(),
             ':caloriesIntake' => $user->getCaloriesIntake(),
         ];
+        $bmrInfo = $user->calculateBMR(); 
+        $caloriesIntake = $user->calculateCaloriesIntake();
+
+        $user->setBmrInfo($bmrInfo);
+        $user->setCaloriesIntake($caloriesIntake);
 
         // Execute the statement
         $stmt->execute($params);
