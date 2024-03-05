@@ -1,4 +1,5 @@
 <?php
+//test
 
 namespace App;
 
@@ -48,6 +49,8 @@ class PatternRouter
         }
         if (file_exists($filename)) {
             require $filename;
+            // echo $filename;
+          
         } else {
             http_response_code(404);
             die();

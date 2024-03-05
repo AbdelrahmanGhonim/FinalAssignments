@@ -14,6 +14,32 @@
     </div>
 
     <?php if (isset($_SESSION["user_name"])) : ?>
+        <div class="workout">
+        <div class="workouts-list">
+                <h3>Workout</h3>
+                <ul id="addedWorkouts"></ul>
+                </div>
+            <button id="addWorkoutBtn" type="button" class="btn btn-info add-workout">Add Workout</button>   
+            
+        </div>
+        
+            <div id="popupForm" class="popup">
+            <div class="popup-content">
+                <span class="close" onclick="closePopupForm()">&times;</span>
+                <h2 class="addworkouttxt">Add Workout</h2>
+                 <form id="workoutForm">
+                 <label hidden id="userIdLabel"><?php echo $_SESSION['id']; ?></label>
+
+                    <label for="exerciseName">Exercise:</label>
+                    <input type="text" id="exerciseName" name="exerciseName" placeholder="Enter exercise" required>
+                    <label for="duration">Duration:</label>
+                    <input type="number" id="duration" name="duration" placeholder="Duration" required>   
+                    <button id="adding-btn" type="button submit" class="btn btn-info">Add</button>   
+                </form>
+            </div>
+            </div>
+
+            
 
     <div class="container">        
         <div class="card wide-card">
@@ -37,31 +63,23 @@
                 </div>
             </div>
         </div>
-             <div class="row">
-                <!-- First Column -->
-                    <div class="col-md-6">
-                        <img class="image1 img-fluid rounded" src="img/progressTracker/image2.jpg" alt="Image">
-                        <p class="text-image1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit fugiat odit pariatur soluta repellendus nostrum unde perspiciatis voluptatem non, ratione praesentium in repellat, perferendis optio fugit, libero quasi animi commodi! Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit fugiat odit pariatur soluta repellendus nostrum unde perspiciatis voluptatem non, ratione praesentium in repellat, perferendis optio fugit, libero quasi animi commodi.</p>
-                    </div>
+        <h4 class="table-header">This calculation based on 100g per each</h4>
+        <div>
+            <input type="text" id="searchInput" placeholder="Enter food name">
+            <button id="searchButton">Search</button>
+            <ul id="recipeList"></ul>
 
-                    <!-- Second Column -->
-                    <div class="col-md-6">
-                        <p class="text-image2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit fugiat odit pariatur soluta repellendus nostrum unde perspiciatis voluptatem non, ratione praesentium in repellat, perferendis optio fugit, libero quasi animi commodi! Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit fugiat odit pariatur soluta repellendus nostrum unde perspiciatis voluptatem non, ratione praesentium in repellat, perferendis optio fugit, libero quasi animi commodi.</p>
-                        <img class="image2 img-fluid rounded" src="img/progressTracker/image1.jpg" alt="Image">
-                    </div>
             </div>
+        <table class="table" id="nutritionTable">
+                <thead>
+                    <tr>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>     
+           
 
-            
-            <h4 class="table-header">This calculation based on 100g per each</h4>
-
-                <table class="table" id="nutritionTable">
-                    <thead>
-                        <tr>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>       
     </div>
 <script src="js/nutritionFact.js"></script>
 

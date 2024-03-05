@@ -1,165 +1,261 @@
-.background-image {
-  background-image: url("../img/progressTracker/IntroProgress.jpg");
-  background-size: cover;
-  background-position: center;
-  height: 50vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  color: white;
-}
-.text-Intro{
-  font-size: 3rem;
-  font-style: initial;
-  color: rgb(196, 94, 11);
-  font-weight: bold;
-  background-attachment: fixed;
-  background-position: center;
-  z-index: 1;
-}
-.card-Intro{
- font-size: 20px;
- width: 50%;
-  margin-left: 25%;
-  margin-top: 2%;
-  margin-bottom: 2%;
-  text-align: center;
-  color: rgb(238, 232, 232);
-  font-style: bold;
-  font-weight: bold;
-}
-.wide-card {
-    width: 700px;
-    margin: 50px auto;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.15);
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-
-}
-.card-body{
-
-  background-color: rgb(12, 12, 12);
-}
-.circle {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    background-color:rgb(175, 108, 14);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 15px;
-    font-weight: bold;
-}
-
-.caloriesIntake{
-
-  font-size: 24px;
-  color: rgb(242, 239, 239);
-  font-style: bold;
-  font-weight: bold;
-  text-align: center;
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-.card-title{
-  font-size: 24px;
-  color: rgb(196, 94, 11);
-  font-style: bold;
-  font-weight: bold;
-  text-align: center;
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
- 
-.card-text{
-
-  color: rgb(252, 252, 252);
-  font-size: 20px;
-  font-weight: semi-bold;
-  text-align: left;
-
-
-}
-.session-info {
+     .background-image {
+      background-image: url("../img/progressTracker/IntroProgress.jpg");
+      background-size: cover;
+      background-position: center;
+      height: 50vh;
       display: flex;
-    justify-content: space-between;
-    margin-top: 10px;
-    color: rgb(252, 252, 252);
-}
-
-.img-fluid {
-  max-width: 100%;
-  height: auto;
-}
-
-.rounded {
-  border-radius: 10px;
-}
-
-.text-image1, .text-image2 {
-  font-size: 24px;
-  color: rgb(244, 241, 239);
-  text-align: left;
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-.col-md-6:nth-child(2) {
-  margin-top: 20px; /* Adjust the margin as needed */
-}
-
-.table-header{
-margin-top: 80px;
-  font-size: 24px;
-  color: rgb(196, 94, 11);
-  font-style: bold;
-  font-weight: bold;
-  text-align: center;
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-
-.table-header {
-  text-align: center;
-  margin-top: 40px; /* Add margin to the top of the header */
-  color: rgb(196, 94, 11); /* Text color */
-}
-
-#nutritionTable {
-  background-color: rgb(247, 20, 20) !important;
-  color: rgb(73, 57, 57) !important;
-  font-size: 20px;
-  font-weight: regular;
-  text-align: center;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  border-radius: 10px;
-
-}
-
-#nutritionTable th,
-#nutritionTable td {
-  color: rgb(73, 57, 57);
-}
-
-
-/* MOMEN HELP ana 3awz al title fel nos w al word-highlighted ykon lonhom orange */
-.word-highlighted {
-  color: orange; /* Set the color of the highlighted word to orange */
-}
-
-.card-body2 {
-  text-align: center; /* Center align the text within the card body */
-  padding: 20px; /* Add some padding for better spacing */
-}
-
-.wide-card {
-  margin-top: 20px; /* Add margin at the top of the card for spacing */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow for a card-like appearance */
-}
- 
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white;
+    }
+    .text-Intro{
+      font-size: 3rem;
+      font-style: initial;
+      color: rgb(196, 94, 11);
+      font-weight: bold;
+      background-attachment: fixed;
+      background-position: center;
+      z-index: 1;
+    }
+    .card-Intro{
+     font-size: 20px;
+     width: 50%;
+      margin-left: 25%;
+      margin-top: 2%;
+      margin-bottom: 2%;
+      text-align: center;
+      color: rgb(238, 232, 232);
+      font-style: bold;
+      font-weight: bold;
+    }
+    .wide-card {
+        max-width: 700px;
+        margin: 50px auto;
+        border-radius: 10px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        margin-top: 20px; /* Add margin at the top of the card for spacing */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow for a card-like appearance */
+    }
     
+    .card-body{
+    
+      background-color: rgb(12, 12, 12);
+    }
+    .circle {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        background-color:rgb(175, 108, 14);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 15px;
+        font-weight: bold;
+    }
+    
+    .caloriesIntake{
+    
+      font-size: 24px;
+      color: rgb(242, 239, 239);
+      font-style: bold;
+      font-weight: bold;
+      text-align: center;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+    .card-title{
+      font-size: 24px;
+      color: rgb(196, 94, 11);
+      font-style: bold;
+      font-weight: bold;
+      text-align: center;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+     
+    .card-text{
+    
+      color: rgb(252, 252, 252);
+      font-size: 20px;
+      font-weight: semi-bold;
+      text-align: left;
+    
+    
+    }
+    .session-info {
+          display: flex;
+        justify-content: space-between;
+        margin-top: 10px;
+        color: rgb(252, 252, 252);
+    }
+    
+    .img-fluid {
+      max-width: 100%;
+      height: auto;
+    }
+    
+  
+    
+    .table-header{
+    margin-top: 80px;
+      font-size: 24px;
+      color: rgb(196, 94, 11);
+      font-style: bold;
+      font-weight: bold;
+      text-align: center;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+    
+    .table-header {
+      text-align: center;
+      margin-top: 40px; /* Add margin to the top of the header */
+      color: rgb(196, 94, 11); /* Text color */
+    }
+
+      #nutritionTable {
+        background-color: rgb(214, 17, 17);
+        color: white;
+        border: 1px solid orange;
+        text-align: center;
+        margin-bottom: 40px; /* Add margin at the bottom of the table */
+        width: 100vh;
+        margin-left: auto;
+        margin-right: auto;
+
+
+    }
+
+    #nutritionTable th, #nutritionTable td {
+        /* border: 0.5px solid rgb(245, 107, 15); */
+        background-color: rgb(53, 51, 51);
+        
+        color: white;
+        font-size: 18px;
+    }
+    
+    #nutritionTable {
+        /* Other styles */
+        overflow: hidden; /* Add this line */
+    }
+    
+    .word-highlighted {
+      color: orange; /* Set the color of the highlighted word to orange */
+    }
+    
+    .card-body2 {
+      text-align: center; /* Center align the text within the card body */
+      padding: 20px; /* Add some padding for better spacing */
+    }
+  .table-container, .table-header{
+    justify-content: center;
+    align-items: center;
+  }
+
+
+
+  .popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: none; /* Remove border */
+    background-color: rgb(116, 115, 115); /* Change background color to black */
+    color: white; /* Change font color to white */
+    padding: 30px; /* Increase padding for more space */
+    border-radius: 10px; /* Add rounded corners */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Add shadow effect */
+    z-index: 1000;
+  }
+  
+  .popup-content {
+    max-width: 400px;
+    max-height: 600px;
+  }
+  .addworkouttxt{
+    font-size: 20px;
+    color: rgb(248, 190, 16);
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  .close {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 30px;
+    color: #aaa;
+  
+  }
+  
+  .close:hover {
+    color: rgb(248, 190, 16);
+  }
+ .workouts-list{
+    background-color: rgb(12, 12, 12);
+    width: 200px;
+    margin-left: 10px;
+    border-radius: 20px;
+    float: left;
+ }
+ .workouts-list h3{
+    color: rgb(248, 190, 16);
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+ }
+ .workout{
+  display: flex;
+  justify-content: space-between;
+ margin: 20px
+ 
+ }
+ .workout .add-workout{
+  background-color: rgb(248, 190, 16);
+  color: rgb(12, 12, 12);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 150px; /* Set a fixed width for the button */
+  height: 40px; /* Set a fixed height for the button */
+    /* Add any other styling properties as needed */
+ }  
+
+ #addBtn{
+  background-color: rgb(248, 190, 16);
+  color: rgb(12, 12, 12);
+  border: none;
+  cursor: pointer;
+  border-left:0px;
+  font-size: 14px;
+  font-weight: bold;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: -14px;
+  margin-right: 10px;
+  padding: auto;
+ }
+ #workoutForm {
+  display: flex;
+  flex-direction: column;
+}
+
+#adding-btn{
+  background-color: rgb(248, 190, 16);
+margin: 5px;
+}
+#recipeList li{
+ 
+}

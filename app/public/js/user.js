@@ -92,6 +92,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 if (isUpdate) {
                     // Display a message to the user that the update was successful
+                    //popup message
+                    alert("Your account has been updated");
                     loadData();
                 }
             } catch (error) {
@@ -109,141 +111,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 /////////////////////////delete user info//////////////////////////////
-
-// Add an event listener for the delete button
-// const deleteButton = document.getElementById('delete-button');
-// deleteButton.addEventListener('click', function () {
-   
-//     const confirmed = confirm('Are you sure you want to delete your account?');
-//     if (confirmed) {
-//         console.log('User confirmed the deletion.');
-       
-
-//         fetch('http://localhost/api/user/delete', {
-//             method: 'DELETE',
-//             headers: {
-//                 'Content-Type': 'application/json',
-//             },
-//             // Set an empty body for DELETE requests
-//             body: JSON.stringify({}),
-//         })
-//         .then(response => {
-//             if (!response.ok) {
-//                 throw new Error('Network response was not ok');
-//             }
-//             return response.text(); // Read the raw text content
-//         })
-//         .then(data => {
-//             console.log('Raw Response:', data); // Log the raw response
-
-//             // Parse the response as JSON
-//             try {
-//                 const parsedData = JSON.parse(data);
-//                 console.log('Parsed Response:', parsedData);
-
-//                 // Display a message to the user that the account was deleted (e.g., toast pop-up)
-//                 //popup message
-//                 alert("Your account has been deleted");
-//                 // You can also handle page redirection or any other action after deletion
-//             } catch (error) {
-//                 console.error('JSON Parsing Error:', error);
-//             }
-//         })
-//         .catch(error => {
-//             console.error('Error:', error);
-//             // Handle errors, e.g., show an error message to the user
-//         });
-//     }
-// });
-
-// deleteButton.addEventListener('click', function () {
-//     const confirmed = confirm('Are you sure you want to delete your account?');
-//     if (confirmed) {
-//         console.log('User confirmed the deletion.');
-
-//         const formDataObject = getFormData();
-
-//         fetch('http://localhost/api/user/delete', {
-//             method: 'DELETE',
-//             headers: {
-//                 'Content-Type': 'application/json',
-//             },
-//             body: JSON.stringify(formDataObject),
-//         })
-//         .then(response => {
-//             if (!response.ok) {
-//                 throw new Error('Network response was not ok');
-//             }
-//             return response.text();
-//         })
-//         .then(data => {
-//             console.log('Raw Response:', data);
-
-//             try {
-//                 const parsedData = JSON.parse(data);
-//                 console.log('Parsed Response:', parsedData);
-
-//                 alert("Your account has been deleted");
-//             } catch (error) {
-//                 console.error('JSON Parsing Error:', error);
-//             }
-//         })
-//         .catch(error => {
-//             console.error('Error:', error);
-//         });
-//     }
-// });
-
-// document.addEventListener('DOMContentLoaded', function () {
-//     const deleteButton = document.getElementById('delete-button');
-
-//     deleteButton.addEventListener('click', function () {
-//         const confirmed = confirm('Are you sure you want to delete your account?');
-//         if (confirmed) {
-//             // Function to get form data
-//             function getFormData() {
-//                 const signupForm = document.getElementById('signup-form');
-//                 const formData = new FormData(signupForm);
-//                 const formDataObject = {};
-//                 formData.forEach((value, key) => {
-//                     formDataObject[key] = value;
-//                 });
-//                 return formDataObject;
-//             }
-
-//             const formDataObject = getFormData();
-
-//             fetch('http://localhost/api/user/delete', {
-//                 method: 'DELETE',
-//                 headers: {
-//                     'Content-Type': 'application/json',
-//                 },
-//                 body: JSON.stringify(formDataObject),
-//             })
-//             .then(response => {
-//                 if (!response.ok) {
-//                     throw new Error('Network response was not ok');
-//                 }
-//                 return response.text();
-//             })
-//             .then(data => {
-//                 console.log('Raw Response:', data);
-
-//                 try {
-//                     const parsedData = JSON.parse(data);
-//                     console.log('Parsed Response:', parsedData);
-
-//                     alert("Your account has been deleted");
-//                 } catch (error) {
-//                     console.error('JSON Parsing Error:', error);
-//                 }
-//             })
-//             .catch(error => {
-//                 console.error('Error:', error);
-//             });
-//         }
-//     });
-// });
 document.addEventListener('DOMContentLoaded', function () {
     const deleteButton = document.getElementById('delete-button');
 
@@ -277,38 +144,18 @@ document.addEventListener('DOMContentLoaded', function () {
                 return response.text();
             })
             .then(data => {
-                // Check if data is not empty before parsing
-                // Call the displaySuccessMessage function
-
-           //     TODO:
-                displaySuccessMessage();
-
                 // Reset the signup form
                 const signupForm = document.getElementById('signup-form');
                 signupForm.reset();
-
                 alert("Your account has been deleted");
+                //can you redirect to home page
+                window.location.href = "http://localhost/login";
             })
             .catch(error => {
                 console.error('Error:', error);
             });
         }
     });
- // Function to display a success message on the page
- function displaySuccessMessage() {
-    // Create a new div element
-    const successMessage = document.createElement('div');
-    successMessage.textContent = 'User deleted successfully!';
-    successMessage.style.backgroundColor = '#4CAF50'; // Green background color
-    successMessage.style.color = 'white';
-    successMessage.style.padding = '10px';
-    successMessage.style.marginTop = '10px';
-
-    // Append the div element to the body (you can choose a different container)
-    document.body.appendChild(successMessage);
-}
-
-
 });
 
 

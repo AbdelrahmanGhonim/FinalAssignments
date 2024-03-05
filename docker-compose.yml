@@ -23,7 +23,8 @@ services:
             MYSQL_DATABASE: 'developmentdb'
         volumes:
             - mysqldata:/var/lib/mysql
-            - ./sql:/docker-entrypoint-initdb.d
+            - ./sql:/docker-entrypoint-initdb.d   # This line includes the SQL scripts
+
 
         ports:
             - 3306:3306
@@ -37,3 +38,5 @@ services:
 
 volumes:
     mysqldata: {}
+
+    

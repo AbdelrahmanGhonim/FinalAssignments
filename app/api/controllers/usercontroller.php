@@ -72,13 +72,13 @@ class UserController
             header('Content-Type: application/json');
 
             try {
-                session_start();
                $jsonData = file_get_contents('php://input');
                 $decodedData = json_decode($jsonData, true);
                     // Delete the user
                     $this->userService->deleteUser($decodedData);
     
                     // Clear session data
+                    session_start();
                     session_unset();
                     session_destroy();
     
@@ -91,8 +91,6 @@ class UserController
             }
     
         }
-
-      // Add more methods for other operations as needed
 
       private function sanitizeUserData($data)
       {

@@ -1,9 +1,9 @@
-<!-- TODO: al footer fi pages mesh sha8al fiha goz2 mn al content mesh sha8al -->
 <footer class="footer-wrapper bg-dark">
     <div class="container">
         <div class="text-center mb-5">
             <h2>Fitness App</h2>
         </div>
+
         <div class="row">
             <div class="col-md-4 mb-3">
                 <h3><span class="fa-text-orange">Contact</h3>
@@ -12,6 +12,7 @@
                 <p><a href="tel:0232132123">023-2132123</a></p>
                 <p><a href="mailto:info@fitnessapp.com">info@fitnessapp.com</a></p>
             </div>
+            
             <div class="col-md-4 mb-3">
                 <h3><span class="fa-text-orange">Social</span></h3>
                 <p><a href="https://www.facebook.com/"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
@@ -22,6 +23,7 @@
 </svg> Instagram</a></p>
 
             </div>
+
             <div class="col-md-4 mb-3">
                 <h3><span class="fa-text-orange">Opening hours</span></h3>
                 <p>Monday: 08:00 - 22:00</p>
@@ -33,6 +35,7 @@
                 <p>Sunday: 08:00 - 22:00</p>
             </div>
         </div>
+
     </div>
 </footer>
 

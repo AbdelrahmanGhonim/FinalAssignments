@@ -30,7 +30,7 @@ class LoginController{
 
         if ($userAuthenticated) {    
             session_start();            
-        
+            $_SESSION["id"] = htmlspecialchars($userAuthenticated['id']);
             $_SESSION["user_name"] = htmlspecialchars($username);// for displaying in the nav bar.
             $_SESSION["caloriesIntake"] =htmlspecialchars($userAuthenticated['caloriesIntake']);
             $_SESSION["goal"] =htmlspecialchars($userAuthenticated['goal']);
@@ -41,9 +41,7 @@ class LoginController{
             exit();
 
         } else {
-           // session_start();            
         
-          //  $_SESSION["user_name"] = 'Guest';
             $error = 'Invalid username or password.';
             echo "<script type='text/javascript'>
             alert('Invalid username or password.');

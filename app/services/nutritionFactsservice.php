@@ -1,10 +1,9 @@
 <?php
-
-
 namespace App\Services;
 
 use App\Repositories\NutritionFactRepository;
 use App\Models\GoalEnum;
+use App\Models\NutritionFact;
 
 class NutritionFactsService{
 
@@ -42,6 +41,41 @@ class NutritionFactsService{
                 break;
         }
         return $foods;
+    }
+
+    public function addUserFood(array $nutritionFact)
+    {
+        try {
+            $nutritionFact = $this->convertArrayToNutritionFact($nutritionFact);
+            $this->nutritionFactRepository->addUserFood($nutritionFact);
+        } catch (\Exception $e) {
+            // Handle the exception (log, show an error message, etc.)
+            throw new \Exception('Error adding user food: ' . $e->getMessage());
+        }
+    }
+
+    private function convertArrayToNutritionFact(array $nutritionFactData): NutritionFact
+    {
+        // Ensure that all required keys are present in the array
+        $requiredKeys = ['userId', 'foodname', 'carbs', 'proteins', 'fats', 'fibers'];
+
+        foreach ($requiredKeys as $key) {
+            if (!array_key_exists($key, $nutritionFactData)) {
+                throw new \Exception("Missing key in nutrition fact data: $key");
+            }
+        }
+
+        // Now you can create a new NutritionFact object
+        $nutritionFact = new NutritionFact(
+            $nutritionFactData['userId'],
+            $nutritionFactData['foodname'],
+            $nutritionFactData['carbs'],
+            $nutritionFactData['proteins'],
+            $nutritionFactData['fats'],
+            $nutritionFactData['fibers']
+        );
+
+        return $nutritionFact;
     }
     
 }

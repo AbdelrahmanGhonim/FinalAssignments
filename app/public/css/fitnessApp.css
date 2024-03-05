@@ -1,137 +1,44 @@
-/* body {
-  box-sizing: content-box;
-  margin: 0;
-  padding: 0;
-  background-color: #121212;
-}
-
-.fa-navbar h1, h2, h3 {
-  font-family: 'Roboto', sans-serif;
-}
-
-
-.fa-hero {
-  display: flex;
-  height: auto;
-  min-height: 70vh;
-  justify-content: center;
-  align-items: center;
-  background-color: #1a1a1b;
-  background-image: url('../img/image2.jpg');
-  background-position: 50% 50%;
-  background-size: cover;
-  opacity: 1;
-  filter: brightness(84%) contrast(118%);
-  text-align: center;
+body{
+  background-color: rgb(52, 51, 51);
   color: white;
-  flex-direction: column;
 }
 
-.fa-hero h1 {
-  font-size: 3rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
-}
-
-.fa-hero h2 {
-  font-size: 2rem;
-  font-weight: 700;
-  margin: 1.5rem 0;
-}
-
-.fa-hero h3 {
-  font-size: 2rem;
-  font-weight: 700;
-  margin: 1.5rem 0;
+.navbar-brand {
+  background-color: rgb(218, 92, 8) ;
+  padding: 5px 10px; /* Adjust the padding as needed */
+  border-radius: 5px; /* Add rounded corners */
 }
 
 
-.fa-navbar {
-background-color: #121212;
-font-weight: 700;
-}
-
-.fa-logo {
-  width: 50px;
-  height: auto;
-}
-
-.fa-navbar-nav {
-  padding-top: 40px;
-  padding-bottom: 40px;
-}
-
-
-main {
-  line-height: 1.5;
-  color: #ffffff;
-  padding: 40px 0;
-}
-main h2, main h3, main h3, main h4, main h5, main h6 {
-  font-weight: 700;
-}
-
-main h2 {
-  font-size: 40px;
-  max-width: 80vw;
-  margin: 0 0 40px;
-  font-size: 45px;
-  line-height: 1.2;
-}
-
-main h3 {
-  margin-top: 30px;
-  margin-bottom: 40px;
-}
-
-.fa-text-orange {
-  color: #ff6f00;
-}
-
-
-main img.width-75 {
-  max-width: 75%;
-  height: auto;
-}
-
-@media (min-width: 992px) {
-  .fa-navbar-nav {
-      padding-bottom: 0;
-  }
-  .fa-navbar-nav li {
-      padding: 0 1.5rem;
-  }
-
-  main h2 {
-      font-size: 45px;
-  }
-
-  main h3 {
-      margin-top: 35px;
-  }
-}
-
-
-form {
-  padding: 40px 0;
-  max-width: 512px;
-}
-
-label {
-  font-weight: 700;
-  margin: 10px 0 6px 6px;
-}
-
-.fa-form-group {
-  margin-bottom: 20px;
-}
-
+/* footer */
 
 .footer-wrapper {
-  color: #ffffff;
+  /* color: #ffffff; */
   padding: 40px 0;
-  text-align: center;
 }
 .footer-wrapper a { 
+  color:rgb(218, 92, 8);
+}
+
+/* helpers */
+.fa-text-orange {
+  color: rgb(218, 92, 8);
+}
+
+
+btn-primary {
+  width: 50%;
+  padding: 10px;
+  box-sizing: border-box;
+  border: none;
+  border-radius: 4px;
+  background-color: #ff8c00; 
   color: #fff;
-} */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  align-items: center;
+}
+
+.btn-primary:hover {
+  background-color: #d17a00; 
+}

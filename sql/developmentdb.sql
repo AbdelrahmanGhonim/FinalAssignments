@@ -123,15 +123,6 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `userName`, `password`, `age`, `gender`, `weight`, `height`, `bmrInfo`, `goal`, `caloriesIntake`) VALUES
-(76, 'Abdo4', '$2y$10$vqS0CHto9Yo6u6Rc5Pc0lexM/xu.UMCGAKWPCQ5l2sekVREfFqpU6', 21, 'Male', 82.00, 175.00, 1907.52, 'Lose Weight', 1407.52),
-(77, 'Ali', '$2y$10$Ly6Nv5v1Y4eSE3echNaRguvZhQ0FwZZx7x/RA324nRgywTfwylGuq', 22, 'Male', 90.00, 185.00, 2057.01, 'Lose Weight', 1557.01),
-(78, 'Ali', '$2y$10$v0AUhXR1cCn0OHzv3tIX/.M0M2QKPP4EkmEqKsQrnZYn1XXAkqe8W', 24, 'Male', 100.00, 176.00, 2136.44, 'Lose Weight', 1636.44),
-(101, 'Abdo', '$2y$10$T80PrjjsZLqYWbJWzrBgAOJdsNiyurJPDoXiXya/F8PeRK0GQefja', 20, 'Male', 75.00, 187.00, 1877.01, 'Maintain Weight', 1877.01),
-(102, 'Ghonim', '$2y$10$4SeecHHDYf8S416v7jooFuwD3m03Kgj5ITuRmchL/9krFuKenVEpS', 20, 'Male', 80.00, 182.00, 1920.00, 'Lose Weight', 1420.00),
-(103, 'mohamed', '$2y$10$Ge2oVttdlsvRW6/BawT7RuxnSQZF8JAW/9Oltlr03wsPzQwmsc0MG', 20, 'Male', 87.00, 187.00, 2037.77, 'Lose Weight', 1537.77),
-(104, 'Abdelrahman', '$2y$10$4Hq66OTbuNkKys90K7IKTu2DwBJMz6vLbNYP.v0VostVd2LyWKpOi', 31, 'Male', 67.00, 181.00, 1678.59, 'Lose Weight', 1178.59);
-
 --
 -- Indexes for dumped tables
 --

@@ -9,7 +9,9 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fitness App</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/head.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.15.4/css/all.css"/>
+
+    <link rel="stylesheet" href="css/fitnessApp.css">
 
 <?php
 $currentPage = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
@@ -17,7 +19,7 @@ $currentPage = pathinfo($currentPage, PATHINFO_FILENAME);
 
 // Check if we are not in an API route
 
-// loadtime is way faster
+// loadTime is way faster
 if (!str_starts_with($currentPage, 'api/')) {
     // Set default CSS file
     $defaultCssFile = 'fitnessApp.css';
@@ -32,26 +34,20 @@ if (!str_starts_with($currentPage, 'api/')) {
             break;
         case 'blog':
             $cssFile = 'blog.css';
-           // echo 'blog';
             break;
             case 'progresstracker':
               $cssFile = 'ProgressTracker.css';
-               // echo 'progress';
               break;
               case 'login':
                 $cssFile = 'login.css';
-                 // echo 'progress';
                 break;
                 case 'signup':
                     $cssFile = 'signup.css';
-                     // echo 'progress';
                     break;
-        // Add more cases for other pages as needed
         default:
             $cssFile = $defaultCssFile;
             break;
     }
-    // Echo the link to the CSS file
     echo '<link rel="stylesheet" href="css/' . $cssFile . '">';
 
 }

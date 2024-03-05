@@ -89,7 +89,6 @@ class UserRepository extends Repository{
                 // User information updated successfully
                 return true;
             } else {
-            //   echo "No rows were affected, user information update failed";
                 return false;
             }
         } catch (\PDOException $e) {
@@ -112,7 +111,5 @@ class UserRepository extends Repository{
 
         }
     }
-
-  
 
 }

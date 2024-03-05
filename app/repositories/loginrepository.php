@@ -3,7 +3,6 @@
 namespace App\Repositories;
 
 use PDO;
-use App\Models\User;
 class LoginRepository extends Repository{
 
     public function authenticateUser($username, $password) {

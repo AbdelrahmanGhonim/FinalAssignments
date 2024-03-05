@@ -24,7 +24,7 @@ class User implements \JsonSerializable{
             $this->weight = $weight;
             $this->height = $height;
             $this->setGoal($goal);
-            $this->caloriesIntake =$this->calculateCaloriesIntake();// should called setCaloriesIntake TODO:
+            $this->caloriesIntake =$this->calculateCaloriesIntake();
             $this->bmrInfo = $this->calculateBMR();
         }
         public function getPassword()
@@ -116,17 +116,7 @@ class User implements \JsonSerializable{
             // Check if the provided goal is one of the defined enums
             $this->goal = $this->isValidGoal($goal) ? $goal : GoalEnum::MAINTAIN_WEIGHT;
         }
-        // public function setGoal($goal) {
-        //     // Check if the provided goal is one of the defined enums
-        //     $allowedGoals = [GoalEnum::LOSE_WEIGHT, GoalEnum::MAINTAIN_WEIGHT, GoalEnum::BUILD_MUSCLE];
-        //     if (in_array($goal, $allowedGoals)) {
-        //         $this->goal = $goal;
-        //     } else {
-        //         // Handle invalid goal (you can throw an exception, set a default, etc.)
-        //         // For now, I'll set a default value
-        //         $this->goal =GoalEnum::MAINTAIN_WEIGHT;
-        //     }
-        // }
+       
         public function getCaloriesIntake()
         {
            return $this->caloriesIntake;
@@ -156,19 +146,6 @@ class User implements \JsonSerializable{
 
         public function calculateCaloriesIntake()
         {
-            // Calories Intake Calculation based on BMR and user's goal
-            // $bmr = $this->calculateBMR();
-    
-            // switch ($this->goal) {
-            //     case GoalEnum::LOSE_WEIGHT:
-            //         return $bmr - 500; // Example: Reduce 500 calories for weight loss
-            //     case GoalEnum::MAINTAIN_WEIGHT:
-            //         return $bmr; // Maintain current weight
-            //     case GoalEnum::BUILD_MUSCLE:
-            //         return $bmr + 300; // Example: Increase 300 calories for muscle building
-            //     default:
-            //         return $bmr; // Default to BMR if goal is not recognized
-            // }
             $bmr = $this->calculateBMR();
 
             // Use the isValidGoal method to check goal validity

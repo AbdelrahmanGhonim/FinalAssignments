@@ -51,3 +51,220 @@ function displayContent(data) {
 }
 
     loadData();
+
+
+    
+
+    // Open popup form when "Add Workout" button is clicked
+document.getElementById("addWorkoutBtn").addEventListener("click", function() {
+    document.getElementById("popupForm").style.display = "block";
+  });
+  
+  // Close popup form when close button is clicked
+  function closePopupForm() {
+    document.getElementById("popupForm").style.display = "none";
+       // Listen for the end of the transition
+       popupForm.addEventListener("transitionend", function handler() {
+        // Remove the event listener to avoid memory leaks
+        popupForm.removeEventListener("transitionend", handler);
+        
+        // After the transition has ended, load the workouts
+        loadWorkout();
+    });
+
+  }
+  
+document.getElementById("adding-btn").addEventListener("click", function() {
+    const exerciseName = document.getElementById("exerciseName").value;
+    const duration = document.getElementById("duration").value;
+
+    if (!exerciseName || !duration) {
+        alert("Please fill in all fields.");
+        return;
+    }
+    closePopupForm();
+
+});
+
+  
+  ////////////////////////Fetch workout data from the API////////////////////////
+
+  function loadWorkout() {
+    fetch("http://localhost/api/workout")
+        .then(response => response.json())
+        .then(data => {
+            console.log('API Response:', data);
+  
+            if (data.length > 0) {
+                // Display items (articles and workouts) if the response array is not empty
+                displayWorkouts(data);
+            } else {
+                console.error('Error: Items not found in API response.');
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching items:', error);
+        });
+  }
+
+// Function to display workouts
+function displayWorkouts(workouts) {
+    // Clear previous workout list
+    const workoutList = document.getElementById('addedWorkouts'); // Update to match the ID in your HTML
+    workoutList.innerHTML = '';
+
+    // Populate the workout list with retrieved data
+    workouts.forEach(workout => {
+        const li = document.createElement('li');
+        li.textContent = `${workout.workoutName} / ${workout.duration} minutes`;
+        workoutList.appendChild(li);
+    });
+}
+
+loadWorkout();
+
+
+  //////////////////////////Add workout to the list////////////////////////
+  function getWorkoutFormData() {
+    const userId = document.getElementById('userIdLabel').textContent;
+    const workoutName = document.getElementById('exerciseName').value;
+    const duration = document.getElementById('duration').value;
+
+    return { userId, workoutName, duration };
+}
+
+  document.addEventListener('DOMContentLoaded', function () {
+    const workoutForm = document.getElementById('workoutForm');
+    const addingBtn = document.getElementById('adding-btn');
+    
+    addingBtn.addEventListener('click', function (event) {
+        event.preventDefault();
+
+        const workoutData = getWorkoutFormData();
+      
+        const apiEndpoint = 'http://localhost/api/workout/addWorkout';
+
+        fetch(apiEndpoint, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(workoutData),
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            //alert("Workout added successfully!")
+            loadWorkout();
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    });
+});
+
+
+
+
+
+///////////////////////EDAMAM API////////////////////////
+
+document.getElementById('searchButton').addEventListener('click', function() {
+    const foodName = document.getElementById('searchInput').value.trim();
+    if (foodName !== '') {
+        // Call a function to fetch and display nutritional information
+        fetchNutritionInfo(foodName);
+    } else {
+        alert('Please enter a food name.');
+    }
+});
+
+function fetchNutritionInfo(foodName) {
+    const APP_ID = '2192294e';
+    const APP_KEY = '5207d82f06e1c1806dd0250adf649c32';
+    const apiUrl = `https://api.edamam.com/api/recipes/v2?type=public&q=${foodName}&app_id=${APP_ID}&app_key=${APP_KEY}`;
+
+    fetch(apiUrl)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            // Display the nutritional information
+            displayNutritionInfo(data);
+        })
+        .catch(error => {
+            console.error('Error fetching nutritional information:', error);
+        });
+}
+
+function displayNutritionInfo(data) {
+    const recipeList = document.getElementById('recipeList');
+    recipeList.innerHTML = ''; // Clear previous content
+
+    data.hits.forEach(hit => {
+        const recipe = hit.recipe;
+        const li = document.createElement('li');
+
+        // Create icon element
+        const icon = document.createElement('i');
+        icon.classList.add('fa','fa-plus'); // Font Awesome icon class
+        icon.style.cursor = 'pointer'; // Change cursor to pointer on hover
+        icon.onclick = () => addFood(recipe); // Set onclick function to add food
+
+        // Add recipe information
+        li.innerHTML += ` ${recipe.label}, Carbs: ${recipe.totalNutrients.CHOCDF.quantity.toFixed(2)}g, 
+        Proteins: ${recipe.totalNutrients.PROCNT.quantity.toFixed(2)}g, Fats: ${recipe.totalNutrients.FAT.quantity.toFixed(2)}g, 
+        Fibers: ${recipe.totalNutrients.FIBTG.quantity.toFixed(2)}g`;
+        li.appendChild(icon); // Append icon to list item
+
+
+        recipeList.appendChild(li);
+    });
+}
+    function addFood(recipe) {
+        const apiUrl = 'http://localhost/api/nutritionFact/addFood'; // Update with your API endpoint
+        const userId = document.getElementById('userIdLabel').textContent;
+
+        // Extract details from the recipe
+        const foodDetails = {
+            userId: userId,
+            foodname: recipe.label,
+            carbs: recipe.totalNutrients.CHOCDF.quantity.toFixed(2),
+            proteins: recipe.totalNutrients.PROCNT.quantity.toFixed(2),
+            fats: recipe.totalNutrients.FAT.quantity.toFixed(2),
+            fibers: recipe.totalNutrients.FIBTG.quantity.toFixed(2)
+        };
+
+        // Define the POST request options
+        const options = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(foodDetails)
+        };
+
+        // Send the POST request
+        fetch(apiUrl, options)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Food added successfully:', data);
+                // Handle success response
+            })
+            .catch(error => {
+                console.error('Error adding food:', error);
+                // Handle error
+            });
+    }
+
+    
+    

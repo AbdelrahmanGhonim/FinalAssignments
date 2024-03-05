@@ -8,12 +8,6 @@ Class SignupRepository extends Repository
   
   public function createUser(User $user) {
     try {
-        // $bmrInfo = $user->calculateBMR(); 
-        // $caloriesIntake = $user->calculateCaloriesIntake();
-
-        // $user->setBmrInfo($bmrInfo);
-        // $user->setCaloriesIntake($caloriesIntake);
-
         // Prepare the SQL statement
         $stmt = $this->connection->prepare("
             INSERT INTO users (userName, password, age, gender, weight, height, bmrInfo, goal, caloriesIntake)

@@ -1,6 +1,7 @@
 <?php
 namespace App\Repositories;
 
+use App\Models\NutritionFact;
 use PDO;
 
 class NutritionFactRepository extends Repository{
@@ -27,4 +28,49 @@ class NutritionFactRepository extends Repository{
       }
     }
 
+    public function addUserFood(NutritionFact $nutritionFact)
+    {
+        try
+        {
+            $stmt=$this->connection->prepare("INSERT INTO userfood (userId,foodname,carbs,proteins,fats,fibers) VALUES (:userId, :foodname, :carbs, :proteins, :fats, :fibers)");
+            $params = [
+                ':userId' => $nutritionFact->getUserId(),
+                ':foodname' => $nutritionFact->getFoodName(),
+                ':carbs' => $nutritionFact->getCarbs(),
+                ':proteins' => $nutritionFact->getProteins(),
+                ':fats' => $nutritionFact->getFats(),
+                ':fibers' => $nutritionFact->getFibers()
+            ];
+            $stmt->execute($params);
+            return true;
+        }catch (\PDOException $e) {
+            error_log('Error creating user food: ' . $e->getMessage());
+            return false;
+        }
+    }
 }
+
+/*
+try{
+    //  var_dump($workout);////////////////////////////
+    $stmt = $this->connection->prepare("
+      INSERT INTO workout (userId, workoutName, duration)
+      VALUES (:userId, :workoutName, :duration)
+    ");
+    $params = [
+      ':userId' => $workout->getUserId(),
+      ':workoutName' => $workout->getWorkoutName(),
+      ':duration' => $workout->getDuration()
+    ];
+    $stmt->execute($params);
+
+    return true;
+
+    }
+    catch (\PDOException $e) {
+      error_log('Error creating workout: ' . $e->getMessage());
+      return false;
+    }
+
+  }
+*/

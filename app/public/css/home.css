@@ -1,8 +1,8 @@
-.background-image {
+ .background-image {
     background-image: url('../img/home/ImageIntro.jpg');
     background-size: cover;
     background-position: center;
-    height: 80vh; 
+    min-height: 80vh; 
     width: 99vw;
     display: flex;
     align-items: center;
@@ -18,7 +18,7 @@
     z-index: 2;
     color: rgb(248, 244, 241);
     backdrop-filter: blur(50px) ;
-    
+    padding: 10px;
     background-color: rgba(0, 0, 0, 0.5);
     opacity: 1;
     margin-top: 200px;
@@ -36,7 +36,6 @@
     font-size: 1.5rem; /* Adjust the font size as needed */
     font-weight: normal; /* Set font weight to normal or adjust as needed */
     margin-top: 10px; /* Add margin between the title and the h6 text */
-    width: 100vh;
 }
 
 
@@ -47,90 +46,11 @@
     font-style: initial;
     
 }
-p{
-    color: rgb(228, 18, 18);
-    max-width: 850px;
-    margin-left: 22rem;
-    margin-top: 1px;
 
-}
-
-/* Add this to your existing CSS file or create a new one */
-
-.features-container {
-    margin-top: 50px;
-}
-
-.feature {
-    margin-bottom: 40px;
-}
-
-.feature img {
-    width: 100%;
+.features-container img {
+    max-width: 100%;
     height: auto;
-    border-radius: 10px; /* Adjust the border-radius as needed */
+    object-fit: cover;
+    height: 500px;
+    border-radius: var(--bs-border-radius);
 }
-
-.feature-title,
-.feature-text {
-    text-align: left;
-}
-
-/* Additional styles for individual titles and paragraphs if needed */
-.feature-title1,
-.feature-text1 {
-    margin-left: 40px ; /* Align Feature 1 to the right */
-    width: 80vh; /* Adjust the width as needed */
-}
-.feature-title1,
-.feature-title2{
-    color: rgb(218, 92, 8);
-    font-weight: bold;
-}
-
-.feature-title2,
-.feature-text2 {
-   
-    display: flex;
-    margin-left: 40px;
-    width: 80vh; /* Adjust the width as needed */
-
-}
-.feature-text1,
-.feature-text2{
-    margin-top: 20px;
-    color: rgb(243, 239, 239);
-    width: 65vh;
-}
-
-.image3,
-.image4{
-    width: 10vh;
-    height: 1vh;
-    display: flex;
-    margin-top: 20px;
-}
-.feature-title3,
-.feature-title4 {
-    color: rgb(218, 92, 8);
-    margin-left: 40px ; /* Align Feature 1 to the right */
-    width: 80vh; /* Adjust the width as needed */
-    display: flex;
-    justify-content: center;
-}
-.feature-text3,
-.feature-text4{
-    margin-top: 20px;
-    color: rgb(243, 239, 239);
-    width: 65vh;
-    margin-left: 40px;
-}
-.feature .feature-text4{
-    margin-left: 40px;
-    display: flex;
-    justify-content: center;
-    align-content: center;
-}
-
-
-

@@ -59,16 +59,9 @@ class SignUpController
     }
 
     public function editProfile()
-    {
-        //if (isset($_SESSION["user_name"]) && $_SESSION["user_name"] !== "Guest") {
-          
+    {          
          include '../views/signup/signup.php';
 
-     //   } else {
-            // If the user is not logged in, redirect to the login page
-            // header('location: /login');
-            // exit();
-      //  }
     }
 
 }

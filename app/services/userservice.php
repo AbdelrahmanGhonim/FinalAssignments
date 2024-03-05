@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Services;
 
 use App\Repositories\UserRepository;
@@ -73,24 +72,6 @@ class UserService{
             
         );
        $_SESSION["caloriesIntake"]=htmlspecialchars($user->getCaloriesIntake());      
-        
-
-        TODO: //check if the password is the same as the one in the database. if it is, then don't hash it again. This WRONG.
-        // if (!password_verify($userData['password'], $userData['password'])) {
-        //   $user->setPassword($userData['password']);
-        // }
-        // if (!password_verify($userData['password'], $user->getPassword())) {
-        //     $hashedPassword = password_hash($userData['password'], PASSWORD_DEFAULT);
-        //     $user->setPassword($hashedPassword);
-        // }
-        // session_start();
-        // if (isset($userData['caloriesIntake'])) {
-        //     $user->setCalculateCaloriesIntake($userData['caloriesIntake']);
-        // }
-        // if(isset($user->getCaloriesIntake())){
-        //     $user->setCaloriesIntake($userData['caloriesIntake']);
-        // }
-  
         //can you set the id??
         $user->setUserId($userData['user-id']);
 

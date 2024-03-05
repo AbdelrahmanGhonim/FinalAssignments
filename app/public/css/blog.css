@@ -5,7 +5,7 @@ min-height: 70vh;
 justify-content: center;
 align-items: center;
 background-color: #1a1a1b;
-background-image: url('../img/introImage.jpg');
+background-image: url('../img/blog/introImage.jpg');
 background-position: 50% 50%;
 background-size: cover;
 opacity: 1;
@@ -51,6 +51,7 @@ flex-direction: column;
 
 .blog-text, .blog-text2 {
   color: white; /* Set text color to white */
+  font-size: 20px; /* Set font size to 20px */
 }
 
 
