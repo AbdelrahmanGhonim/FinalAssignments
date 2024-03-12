@@ -50,8 +50,6 @@ function displayContent(data) {
     });
 }
 
-    loadData();
-
 
     
 
@@ -89,23 +87,22 @@ document.getElementById("adding-btn").addEventListener("click", function() {
   
   ////////////////////////Fetch workout data from the API////////////////////////
 
-  function loadWorkout() {
-    fetch("http://localhost/api/workout")
+function loadWorkout() {
+    // Return the fetch promise directly
+    return fetch("http://localhost/api/workout")
         .then(response => response.json())
         .then(data => {
             console.log('API Response:', data);
   
             if (data.length > 0) {
-                // Display items (articles and workouts) if the response array is not empty
                 displayWorkouts(data);
-            } else {
-                console.error('Error: Items not found in API response.');
             }
         })
         .catch(error => {
             console.error('Error fetching items:', error);
         });
-  }
+}
+
 
 // Function to display workouts
 function displayWorkouts(workouts) {
@@ -121,7 +118,7 @@ function displayWorkouts(workouts) {
     });
 }
 
-loadWorkout();
+// loadWorkout();
 
 
   //////////////////////////Add workout to the list////////////////////////
@@ -225,10 +222,69 @@ function displayNutritionInfo(data) {
         recipeList.appendChild(li);
     });
 }
+document.getElementById('openPopupButtonf').addEventListener('click', function() {
+    document.getElementById('searchPopupf').style.display = 'block';
+});
+
+document.querySelector('.closef').addEventListener('click', function() {
+    document.getElementById('searchPopupf').style.display = 'none';
+});
+
+
+///////////////////////Fetching the User food choice//////////////////////////
+
+function loadUserFood() {
+    // This function already returns a promise due to the fetch call
+    return fetch("http://localhost/api/nutritionFact/getUserFood")
+        .then(response => response.json())
+        .then(data => {
+            console.log('API Response:', data);
+
+            if (data.length > 0) {
+                displayUserFood(data);
+            }   
+            
+        })
+        .catch(error => {
+            console.error('Error fetching items:', error);
+        });
+}
+
+
+function displayUserFood(data) {
+    const tbody = document.getElementById('nutritionTable').querySelector('tbody');
+
+    // Directly append new data to the table body without clearing it
+    data.forEach(item => {
+        const row = document.createElement('tr');
+        Object.keys(item).forEach(key => {
+            // Exclude any headers you don't want to display in the table
+            const headersToExclude = ['food_id', 'goal_id'];
+            if (!headersToExclude.includes(key)) {
+                const td = document.createElement('td');
+                td.textContent = item[key];
+                row.appendChild(td);
+            }
+        });
+        tbody.appendChild(row);
+    });
+}
+// loadUserFood();
+
+
+
+
+
+
+
+
+
+
+///////////////////////ADD FOOD TO THE DATABASE////////////////////////
     function addFood(recipe) {
         const apiUrl = 'http://localhost/api/nutritionFact/addFood'; // Update with your API endpoint
         const userId = document.getElementById('userIdLabel').textContent;
-
+    
         // Extract details from the recipe
         const foodDetails = {
             userId: userId,
@@ -238,7 +294,7 @@ function displayNutritionInfo(data) {
             fats: recipe.totalNutrients.FAT.quantity.toFixed(2),
             fibers: recipe.totalNutrients.FIBTG.quantity.toFixed(2)
         };
-
+    
         // Define the POST request options
         const options = {
             method: 'POST',
@@ -247,7 +303,7 @@ function displayNutritionInfo(data) {
             },
             body: JSON.stringify(foodDetails)
         };
-
+    
         // Send the POST request
         fetch(apiUrl, options)
             .then(response => {
@@ -257,14 +313,31 @@ function displayNutritionInfo(data) {
                 return response.json();
             })
             .then(data => {
+                alert("Food added successfully!");
                 console.log('Food added successfully:', data);
-                // Handle success response
+    
+                // Directly append the new food to the table without refreshing
+                // Assuming 'data' is the newly added food item
+              ///  displayUserFood([data]); // Wrap data in an array if it's a single object
+                initializeDataLoad(); // Reload all data
+               // loadUserFood(); // Reload user food data only
             })
             .catch(error => {
                 console.error('Error adding food:', error);
-                // Handle error
             });
     }
-
+    
+    async function initializeDataLoad() {
+        try {
+            await loadData(); // Load initial data
+            await loadWorkout(); // Then load workout data
+            await loadUserFood(); // Finally, load user food data
+        } catch (error) {
+            console.error('Error during data initialization:', error);
+        }
+    }
+    
+    // Kick off the data loading process
+    initializeDataLoad();
     
     

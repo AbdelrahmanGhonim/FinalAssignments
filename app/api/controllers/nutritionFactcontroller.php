@@ -39,6 +39,23 @@ private $nutritionFactService;
         }
 
       }
+      ///////////////////////////////Users food////////////////////////////////////////
+      public function getUserFood()
+      {
+        header("Access-Control-Allow-Origin: http://127.0.0.1:5500");
+        header("Access-Control-Allow-Headers: Content-Type");
+        header("Access-Control-Allow-Methods: GET");
+        header("Content-Type: application/json");
+         session_start();
+        if(isset($_SESSION["id"])){
+          $userId = $_SESSION["id"];
+          $userFood = $this->nutritionFactService->getUserFoodChoice($userId);
+          echo json_encode($userFood);
+        }
+        else{
+          echo json_encode(['error' => 'User not logged in.']);
+        }
+      }
 
       public function addFood()
       {

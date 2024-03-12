@@ -43,6 +43,14 @@ class NutritionFactsService{
         return $foods;
     }
 
+    public function getUserFoodChoice($userId){
+
+        return $this->nutritionFactRepository->getUserFood($userId);
+    }
+
+
+
+
     public function addUserFood(array $nutritionFact)
     {
         try {

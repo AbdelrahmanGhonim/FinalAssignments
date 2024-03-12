@@ -34,9 +34,10 @@ Class SignupRepository extends Repository
 
         // Execute the statement
         $stmt->execute($params);
+        $userId=$this->connection->lastInsertId();
 
         // Optionally, you might return some indication of success
-        return true;
+        return $userId; ////////////////////TESTING
     } catch (\PDOException $e) {
         // Log the error instead of echoing
         error_log('Error creating user: ' . $e->getMessage());
@@ -45,5 +46,7 @@ Class SignupRepository extends Repository
         return false;
     }
   }
+
+
 
 }

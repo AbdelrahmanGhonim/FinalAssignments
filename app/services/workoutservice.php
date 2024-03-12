@@ -28,7 +28,7 @@ class WorkoutService{
   {
       try {
           $workout = $this->convertArrayToWorkout($workoutData);
-        //  var_dump($workout);////////////////////////////
+          var_dump($workout);////////////////////////////
           $this->workoutRepository->addWorkout($workout);
       } catch (\Exception $e) {
           // Handle the exception (log, show an error message, etc.)

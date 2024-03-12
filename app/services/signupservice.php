@@ -15,6 +15,6 @@ class SignupService{
 
     public function createUser(User $user){
 
-        $this->signupRepository->createUser($user);
+        return $this->signupRepository->createUser($user);
     }
   }

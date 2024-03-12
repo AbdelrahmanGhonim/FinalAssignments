@@ -28,6 +28,26 @@ class NutritionFactRepository extends Repository{
       }
     }
 
+    public function getUserFood($userId)
+    {
+        try {
+            $stmt = $this->connection->prepare("
+                SELECT foodname,carbs, proteins, fats, fibers
+                FROM userfood
+                WHERE userId = :userId
+            ");
+            $stmt->bindParam(':userId', $userId, PDO::PARAM_INT);
+            $stmt->execute();
+
+            $userFood = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            return $userFood;
+        } catch (\PDOException $e) {
+            // Handle the exception (log, show an error message, etc.)
+            throw new \PDOException('Error getting user food: ' . $e->getMessage());
+        }
+    }
+
     public function addUserFood(NutritionFact $nutritionFact)
     {
         try
@@ -50,27 +70,3 @@ class NutritionFactRepository extends Repository{
     }
 }
 
-/*
-try{
-    //  var_dump($workout);////////////////////////////
-    $stmt = $this->connection->prepare("
-      INSERT INTO workout (userId, workoutName, duration)
-      VALUES (:userId, :workoutName, :duration)
-    ");
-    $params = [
-      ':userId' => $workout->getUserId(),
-      ':workoutName' => $workout->getWorkoutName(),
-      ':duration' => $workout->getDuration()
-    ];
-    $stmt->execute($params);
-
-    return true;
-
-    }
-    catch (\PDOException $e) {
-      error_log('Error creating workout: ' . $e->getMessage());
-      return false;
-    }
-
-  }
-*/

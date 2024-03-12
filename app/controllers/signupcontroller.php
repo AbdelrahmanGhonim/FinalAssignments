@@ -38,9 +38,10 @@ class SignUpController
                 $user = new User($userName, $password, $age, $gender, $weight, $height, $goal);
 
                 
-                $this->signupService->createUser($user);
+               $userId= $this->signupService->createUser($user);
 
                 session_start();
+                $_SESSION["id"] = $userId;
                 $_SESSION["user_name"] = htmlspecialchars($userName);
                 $_SESSION["caloriesIntake"] = htmlspecialchars($user->getCaloriesIntake());
                 $_SESSION["goal"] = htmlspecialchars($goal);

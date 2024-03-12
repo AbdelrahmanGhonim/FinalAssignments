@@ -213,8 +213,8 @@
     margin-bottom: 10px;
  }
  .workout{
-  display: flex;
-  justify-content: space-between;
+  /* display: flex;
+  justify-content: space-between; */
  margin: 20px
  
  }
@@ -228,9 +228,10 @@
   font-weight: bold;
   margin-top: 10px;
   margin-bottom: 10px;
-  width: 150px; /* Set a fixed width for the button */
-  height: 40px; /* Set a fixed height for the button */
-    /* Add any other styling properties as needed */
+  width: 150px; 
+  height: 40px; 
+  float: right ;
+   
  }  
 
  #addBtn{
@@ -247,6 +248,7 @@
   margin-right: 10px;
   padding: auto;
  }
+
  #workoutForm {
   display: flex;
   flex-direction: column;
@@ -256,6 +258,129 @@
   background-color: rgb(248, 190, 16);
 margin: 5px;
 }
-#recipeList li{
- 
+
+
+/* Search food bar */
+
+/* Popup styles */
+.popup-food {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.4);
+  padding-top: 100px;
 }
+
+.popup-foodcontent {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  border-radius: 20px;
+}
+
+.closef {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.closef:hover,
+.closef:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+.results-container {
+  margin-top: 20px; /* Adds some space between the search bar and the results */
+  padding-left: 20px; /* Starts content from the left with some padding */
+  /* Adjust width as needed or keep it 100% to use the full container width */
+}
+
+.scrollable-list {
+  max-height: 200px;
+  overflow-y: auto;
+}
+#openPopupButtonf{
+  background-color: rgb(248, 190, 16);
+  color: rgb(12, 12, 12);
+  border: none;
+  cursor: pointer;
+  border-left:0px;
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 10px;
+  right: 100vh;
+}
+
+.table-and-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; 
+  width: 100%; 
+}
+
+.table {
+  width: auto; 
+}
+
+#openPopupButtonf {
+  margin-left: 97.5%; 
+  width: 120px;
+
+}
+
+/* search bar */
+.search-container {
+  display: flex; /* Uses flexbox to align children */
+  justify-content: center; /* Centers children horizontally in the container */
+  align-items: center; /* Centers children vertically (useful if their heights are different) */
+  width: 100%; /* Makes sure the container takes full width of its parent, adjust as necessary */
+  margin-top: 20px; /* Adds some space above the search bar, adjust as needed */
+}
+#searchInput, #searchButton {
+  border-radius: 20px; 
+  padding: 10px 15px; 
+  border: 1px solid #ccc; 
+  font-size: 16px; 
+  outline: none; 
+}
+
+#searchInput {
+  margin-right: -4px; 
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0; 
+}
+
+#searchButton {
+  border-top-left-radius: 0; 
+  border-bottom-left-radius: 0; 
+  cursor: pointer; 
+  background-color: rgb(248, 190, 16);
+  color: rgb(0, 0, 0); 
+
+}
+#recipeList{
+  margin-top: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  padding: 20px;
+  border-radius: 20px;
+  color: rgb(0, 0, 0);
+  font-size: 15px;
+  font-weight: regular;
+  text-align: center;
+  outline-style: none;
+}
+
+
+
