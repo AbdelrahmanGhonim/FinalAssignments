@@ -3,7 +3,7 @@ namespace App\Models;
 
 class NutritionFact implements \JsonSerializable{
 
-private $userId;
+  private $userId;
   private $foodName;
   private $carbs;
   private $proteins;

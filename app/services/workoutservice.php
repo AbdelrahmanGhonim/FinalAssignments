@@ -28,11 +28,21 @@ class WorkoutService{
   {
       try {
           $workout = $this->convertArrayToWorkout($workoutData);
-          var_dump($workout);////////////////////////////
+         
           $this->workoutRepository->addWorkout($workout);
       } catch (\Exception $e) {
           // Handle the exception (log, show an error message, etc.)
           throw new \Exception('Error adding workout: ' . $e->getMessage());
+      }
+  }
+
+  public function deleteWorkout($userId, $workoutName, $duration)
+  {
+      try {
+          $this->workoutRepository->deleteWorkout($userId, $workoutName, $duration);
+      } catch (\Exception $e) {
+          // Handle the exception (log, show an error message, etc.)
+          throw new \Exception('Error deleting workout: ' . $e->getMessage());
       }
   }
 

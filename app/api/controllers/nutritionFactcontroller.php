@@ -82,6 +82,31 @@ private $nutritionFactService;
         }
       }
 
+      public function deleteUserFood()
+      {
+         header('Content-Type: application/json');
+        $jsonData = file_get_contents('php://input');
+        if(empty($jsonData)) {
+            http_response_code(400); // Bad request
+            echo json_encode(['error' => 'Empty request body']);
+            return;
+        }
+        $decodedData = json_decode($jsonData, true);
+        if ($decodedData === null && json_last_error() !== JSON_ERROR_NONE) {
+            http_response_code(400); // Bad request
+            echo json_encode(['error' => 'Error decoding JSON data']);
+            return;
+        }
+        try{
+      
+        $this->nutritionFactService->DeleteUserFood($decodedData['foodId']);
+        echo json_encode(['message' => 'Food deleted successfully']);
+        } catch (\Exception $e) {
+            http_response_code(500); // Internal server error
+            echo json_encode(['error' => 'Failed to delete food']);
+        }
+      }
+
       private function sanitizeFoodData($data)
       {
         // Example: Sanitize string inputs

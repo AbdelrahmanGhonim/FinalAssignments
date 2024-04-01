@@ -4,7 +4,8 @@ namespace App\Repositories;
 use PDO;
 use App\Models\User;
 
-class UserRepository extends Repository{
+class UserRepository extends Repository
+{
 
     public function getUserByUserName($userName)
     {
@@ -22,7 +23,7 @@ class UserRepository extends Repository{
             $stmt->execute();
 
             // Fetch the user data
-            $user = $stmt->fetch(PDO::FETCH_ASSOC);      
+            $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
             // Check if the user exists
             if ($user) {
@@ -41,9 +42,9 @@ class UserRepository extends Repository{
 
     public function updateUserInfo(User $user)
     {
-    
+
         try {
-    
+
             // Recalculate BMR and Calories Intake
             $bmrInfo = $user->calculateBMR();
             $caloriesIntake = $user->calculateCaloriesIntake();
@@ -67,17 +68,17 @@ class UserRepository extends Repository{
             ");
 
             $params = [
-            ':password' => $user->getPassword(),
-            ':age' => $user->getAge(),
-            ':gender' => $user->getGender(),
-            ':weight' => $user->getWeight(),
-            ':height' => $user->getHeight(),
-            ':goal' => $user->getGoal(),
-            ':newUsername' => $user->getUserName(),
-            ':caloriesIntake' => $user->getCaloriesIntake(),
-            ':bmrInfo' => $user->getBmrInfo(),
-            ':userId' => $user->getUserId(),
-        ];
+                ':password' => $user->getPassword(),
+                ':age' => $user->getAge(),
+                ':gender' => $user->getGender(),
+                ':weight' => $user->getWeight(),
+                ':height' => $user->getHeight(),
+                ':goal' => $user->getGoal(),
+                ':newUsername' => $user->getUserName(),
+                ':caloriesIntake' => $user->getCaloriesIntake(),
+                ':bmrInfo' => $user->getBmrInfo(),
+                ':userId' => $user->getUserId(),
+            ];
             // Execute the statement
             error_log('SQL Query: ' . $stmt->queryString);
 
@@ -95,12 +96,14 @@ class UserRepository extends Repository{
             throw new \PDOException('Error updating user information: ' . $e->getMessage());
         }
     }
-    public function deleteUser(User $user)
+    public function deleteUser(User $user) //TODO: Add a method to delete anything related to the user because of the foreign key constraints
     {
         try {
+            $this->DeleteUserFood($user->getUserId());
+            $this->deleteUserWorkout($user->getUserId());
             // Use a prepared statement to delete the user by username
             $stmt = $this->connection->prepare("DELETE FROM users WHERE id = :id");
-            $userId=$user->getUserId();
+            $userId = $user->getUserId();
             $stmt->bindParam(':id', $userId, PDO::PARAM_STR);
             $stmt->execute();
 
@@ -111,5 +114,34 @@ class UserRepository extends Repository{
 
         }
     }
-
+    public function DeleteUserFood($userId)
+    {
+        try {
+            $stmt = $this->connection->prepare("
+                DELETE FROM userfood
+                WHERE userId = :id
+            ");
+            $stmt->bindParam(':id', $userId, PDO::PARAM_INT);
+            $stmt->execute();
+            return true;
+        } catch (\PDOException $e) {
+            error_log('Error deleting user food: ' . $e->getMessage());
+            return false;
+        }
+    }
+    public function deleteUserWorkout($userId)
+    {
+        try {
+            $stmt = $this->connection->prepare("
+      DELETE FROM workout
+      WHERE userId = :userId
+     ");
+            $stmt->bindParam(':userId', $userId, PDO::PARAM_STR);
+            $stmt->execute();
+            return true;
+        } catch (\PDOException $e) {
+            error_log('Error deleting workout: ' . $e->getMessage());
+            return false;
+        }
+    }
 }

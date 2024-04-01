@@ -11,7 +11,7 @@ class WorkoutRepository extends Repository{
   {
         try{
         $stmt = $this->connection->prepare("
-          SELECT workoutName, duration
+          SELECT userId, workoutName, duration
           FROM workout
           WHERE userId = :userId
         ");
@@ -46,6 +46,28 @@ class WorkoutRepository extends Repository{
     }
     catch (\PDOException $e) {
       error_log('Error creating workout: ' . $e->getMessage());
+      return false;
+    }
+
+  }
+
+  public function deleteWorkout( $userId, $workoutName, $duration)
+  {
+    try{
+    $stmt = $this->connection->prepare("
+      DELETE FROM workout
+      WHERE userId = :userId AND workoutName = :workoutName AND duration = :duration
+     ");
+    $stmt->bindParam(':userId', $userId, PDO::PARAM_STR);
+    $stmt->bindParam(':workoutName', $workoutName, PDO::PARAM_STR);
+    $stmt->bindParam(':duration', $duration, PDO::PARAM_INT);
+    $stmt->execute();
+
+    return true;
+
+    }
+    catch (\PDOException $e) {
+      error_log('Error deleting workout: ' . $e->getMessage());
       return false;
     }
 

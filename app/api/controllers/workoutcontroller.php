@@ -53,7 +53,7 @@ class WorkoutController
     }
     try{
     $sanitizedData = $this->sanitizeWorkoutData($decodedData);
-    // var_dump($sanitizedData);////////////////////////////
+
     $this->workoutService->addWorkout($sanitizedData);
    // echo json_encode(['message' => 'Workout added successfully']);
     } catch (\Exception $e) {
@@ -61,6 +61,33 @@ class WorkoutController
         echo json_encode(['error' => 'Failed to add workout']);
     }
   
+  }
+
+  public function deleteWorkout(){
+    header('Content-Type: application/json');
+    $jsonData = file_get_contents('php://input');
+    if(empty($jsonData)) {
+        http_response_code(400); // Bad request
+        echo json_encode(['error' => 'Empty request body']);
+        return;
+    }
+    $decodedData = json_decode($jsonData, true);
+    if ($decodedData === null && json_last_error() !== JSON_ERROR_NONE) {
+        http_response_code(400); // Bad request
+        echo json_encode(['error' => 'Error decoding JSON data']);
+        return;
+    }
+
+    try{
+    $userId = $decodedData['userId'];
+    $workoutName = $decodedData['workoutName'];
+    $duration = $decodedData['duration'];
+    $this->workoutService->deleteWorkout($userId, $workoutName, $duration);
+    echo json_encode(['message' => 'Workout deleted successfully']);
+    } catch (\Exception $e) {
+        http_response_code(500); // Internal server error
+        echo json_encode(['error' => 'Failed to delete workout']);
+    }
   }
 
 

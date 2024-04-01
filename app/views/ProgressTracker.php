@@ -30,13 +30,13 @@ include __DIR__ . '/header.php';
             <span class="close" onclick="closePopupForm()">&times;</span>
             <h2 class="addworkouttxt">Add Workout</h2>
             <form id="workoutForm">
-                <label id="userIdLabel">
-                   
+                <label id="userIdLabel" style="display: none;">
+                    <?php echo $_SESSION["id"]; ?>
                 </label>
                 <label for="exerciseName">Exercise:</label>
                 <input type="text" id="exerciseName" name="exerciseName" placeholder="Enter exercise" required>
                 <label for="duration">Duration:</label>
-                <input type="number" id="duration" name="duration" placeholder="Duration" required>
+                <input type="number" id="duration" name="duration" placeholder="Duration" required step="1">
                 <button id="adding-btn" type="button submit" class="btn btn-info">Add</button>
             </form>
         </div>
@@ -68,13 +68,7 @@ include __DIR__ . '/header.php';
                 </div>
             </div>
         </div>
-        <!-- <h4 class="table-header">This calculation based on 100g per each</h4>
-        <div>
-            <input type="text" id="searchInput" placeholder="Enter food name">
-            <button id="searchButton">Search</button>
-            <ul id="recipeList"></ul>
 
-        </div> -->
 
 
         <div id="searchPopupf" class="popup-food">
@@ -82,31 +76,37 @@ include __DIR__ . '/header.php';
                 <span class="closef">&times;</span>
                 <!-- <h4 class="table-header">This calculation based on 100g per each</h4> -->
                 <div class="search-container">
-                <input type="text" id="searchInput" placeholder="Enter food name">
-                <button id="searchButton" class="btn btn-success">Search</button>
+                    <input type="text" id="searchInput" placeholder="Enter food name">
+                    <button id="searchButton" class="btn btn-success">Search</button>
                 </div>
                 <div class="results-container">
-                <ul id="recipeList" class="scrollable-list"></ul>
+                    <ul id="recipeList" class="scrollable-list"></ul>
                 </div>
 
             </div>
         </div>
 
         <div class="container">
-        <button id="openPopupButtonf" class="btn btn-success">Add Food</button>
+            <div class="button-container">
+                <button id="openPopupButtonf" class="btn btn-success">Add Food</button>
+                <button id="editButton" class="btn btn-primary">
+                    <i class="fas fa-edit"></i> Edit
+                </button>
+            </div>
 
-            <table class="table" id="nutritionTable">
-                <thead>
-                    <tr>
-                    </tr>
-                </thead>
-                <tbody>
-                </tbody>
-            </table>
+                <table class="table" id="nutritionTable">
+                    <thead>
+                        <tr>
+                        <th>Actions</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
         </div>
 
-
-    </div>
 
 
     <script src="js/nutritionFact.js"></script>

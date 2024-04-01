@@ -32,7 +32,7 @@ class NutritionFactRepository extends Repository{
     {
         try {
             $stmt = $this->connection->prepare("
-                SELECT foodname,carbs, proteins, fats, fibers
+                SELECT id,foodname,carbs, proteins, fats, fibers
                 FROM userfood
                 WHERE userId = :userId
             ");
@@ -65,6 +65,23 @@ class NutritionFactRepository extends Repository{
             return true;
         }catch (\PDOException $e) {
             error_log('Error creating user food: ' . $e->getMessage());
+            return false;
+        }
+    }
+
+    public function DeleteUserFood($foodId)
+    {
+        try
+        {
+            $stmt = $this->connection->prepare("
+                DELETE FROM userfood
+                WHERE id = :id
+            ");
+            $stmt->bindParam(':id',$foodId, PDO::PARAM_INT);
+            $stmt->execute();
+            return true;
+        }catch (\PDOException $e) {
+            error_log('Error deleting user food: ' . $e->getMessage());
             return false;
         }
     }

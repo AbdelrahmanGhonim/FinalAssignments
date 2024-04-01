@@ -48,9 +48,6 @@ class NutritionFactsService{
         return $this->nutritionFactRepository->getUserFood($userId);
     }
 
-
-
-
     public function addUserFood(array $nutritionFact)
     {
         try {
@@ -59,6 +56,16 @@ class NutritionFactsService{
         } catch (\Exception $e) {
             // Handle the exception (log, show an error message, etc.)
             throw new \Exception('Error adding user food: ' . $e->getMessage());
+        }
+    }
+
+    public function DeleteUserFood($foodId)
+    {
+        try {
+            $this->nutritionFactRepository->DeleteUserFood($foodId);
+        } catch (\Exception $e) {
+            // Handle the exception (log, show an error message, etc.)
+            throw new \Exception('Error deleting user food: ' . $e->getMessage());
         }
     }
 
