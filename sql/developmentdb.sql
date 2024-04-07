@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql
--- Generation Time: Jan 21, 2024 at 04:55 PM
+-- Generation Time: Apr 07, 2024 at 12:25 PM
 -- Server version: 11.1.2-MariaDB-1:11.1.2+maria~ubu2204
 -- PHP Version: 8.2.12
 
@@ -20,8 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `developmentdb`
 --
-CREATE DATABASE IF NOT EXISTS `developmentdb` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `developmentdb`;
 
 -- --------------------------------------------------------
 
@@ -71,34 +69,37 @@ CREATE TABLE `nutrition_facts` (
 INSERT INTO `nutrition_facts` (`food_id`, `food_name`, `carbs`, `proteins`, `fats`, `fibers`, `goal_id`) VALUES
 (1, 'Spinach', 1.20, 0.50, 0.20, 0.70, 0),
 (2, 'Broccoli', 6.60, 2.80, 0.60, 2.60, 0),
-(3, 'Kale', 5.40, 2.90, 0.50, 1.30, 0),
-(4, 'Cauliflower', 5.30, 2.00, 0.30, 2.00, 0),
 (5, 'Cucumber', 3.60, 0.50, 0.20, 0.50, 0),
-(6, 'Tomato', 3.90, 0.90, 0.20, 1.20, 0),
 (7, 'Lettuce', 1.00, 0.50, 0.10, 1.00, 0),
 (8, 'Zucchini', 3.10, 1.20, 0.20, 1.00, 0),
-(9, 'Bell Pepper', 6.00, 1.00, 0.20, 2.50, 0),
-(10, 'Cabbage', 6.00, 1.30, 0.10, 2.50, 0),
-(11, 'Quinoa', 21.30, 4.10, 1.60, 2.80, 1),
 (12, 'Sweet Potato', 20.10, 1.60, 0.10, 3.00, 1),
-(13, 'Brown Rice', 44.80, 8.50, 1.60, 3.50, 1),
 (14, 'Oats', 66.30, 16.90, 7.00, 10.60, 1),
 (15, 'Greek Yogurt', 3.60, 10.00, 5.00, 0.00, 1),
-(16, 'Salmon', 0.00, 25.40, 11.80, 0.00, 1),
-(17, 'Avocado', 8.50, 2.00, 14.70, 6.70, 1),
 (18, 'Almonds', 21.70, 21.20, 49.40, 11.80, 1),
 (19, 'Chicken Breast', 0.00, 31.00, 3.60, 0.00, 1),
-(20, 'Quinoa Salad', 18.70, 4.00, 6.20, 2.80, 1),
-(21, 'Chicken Breast', 0.00, 31.00, 3.60, 0.00, 2),
 (22, 'Eggs', 0.60, 12.60, 9.50, 0.00, 2),
 (23, 'Beef', 0.00, 26.10, 21.20, 0.00, 2),
 (24, 'Greek Yogurt', 3.60, 10.00, 5.00, 0.00, 2),
 (25, 'Cottage Cheese', 3.40, 11.10, 4.30, 0.00, 2),
-(26, 'Chickpeas', 45.00, 12.50, 2.60, 7.60, 2),
-(27, 'Brown Rice', 44.80, 8.50, 1.60, 3.50, 2),
-(28, 'Almonds', 21.70, 21.20, 49.40, 11.80, 2),
 (29, 'Peanut Butter', 20.00, 25.00, 50.00, 8.00, 2),
 (30, 'Pasta', 71.20, 12.50, 1.10, 2.50, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `userfood`
+--
+
+CREATE TABLE `userfood` (
+  `id` int(11) NOT NULL,
+  `userId` int(11) NOT NULL,
+  `foodname` varchar(255) NOT NULL,
+  `carbs` decimal(10,2) NOT NULL,
+  `proteins` decimal(10,2) NOT NULL,
+  `fats` decimal(10,2) NOT NULL,
+  `fibers` decimal(10,2) NOT NULL,
+  `created_at` timestamp NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -119,9 +120,18 @@ CREATE TABLE `users` (
   `caloriesIntake` decimal(10,2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `users`
+-- Table structure for table `workout`
 --
+
+CREATE TABLE `workout` (
+  `id` int(11) NOT NULL,
+  `userId` int(11) NOT NULL,
+  `workoutName` varchar(255) NOT NULL,
+  `duration` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Indexes for dumped tables
@@ -140,10 +150,24 @@ ALTER TABLE `nutrition_facts`
   ADD PRIMARY KEY (`food_id`);
 
 --
+-- Indexes for table `userfood`
+--
+ALTER TABLE `userfood`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `userId` (`userId`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `workout`
+--
+ALTER TABLE `workout`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `userId` (`userId`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -162,10 +186,38 @@ ALTER TABLE `nutrition_facts`
   MODIFY `food_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
+-- AUTO_INCREMENT for table `userfood`
+--
+ALTER TABLE `userfood`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=140;
+
+--
+-- AUTO_INCREMENT for table `workout`
+--
+ALTER TABLE `workout`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=99;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `userfood`
+--
+ALTER TABLE `userfood`
+  ADD CONSTRAINT `userfood_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `users` (`id`);
+
+--
+-- Constraints for table `workout`
+--
+ALTER TABLE `workout`
+  ADD CONSTRAINT `workout_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `users` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

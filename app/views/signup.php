@@ -1,7 +1,7 @@
 <?php
-    include __DIR__ . '/header.php';
-    ?>
-    <div class="container">
+include __DIR__ . '/header.php';
+?>
+<div class="container">
     <div class="row justify-content-center">
         <div class="col-md-6">
             <h1 class="text-center">Signup Form</h1>
@@ -51,11 +51,11 @@
                 </div>
 
                 <button type="submit" id="button" class="btn btn-primary btn-block">Submit</button>
-                 <?php
-                    if (isset($_SESSION["user_name"]) && $_SESSION["user_name"] !== "Guest") {
-                       echo '<button type="button" class="btn btn-primary btn-block" id="delete-button">Delete</button>';
-                        echo '<script src="js/user.js"></script>';
-                    }
+                <?php
+                if (isset($_SESSION["user_name"]) && $_SESSION["user_name"] !== "Guest") {
+                    echo '<button type="button" class="btn btn-primary btn-block" id="delete-button">Delete</button>';
+                    echo '<script src="js/user.js"></script>';
+                }
                 ?>
 
             </form>
@@ -63,7 +63,6 @@
     </div>
 </div>
 
-     <?php
-    include __DIR__ . '/footer.php';
-    ?> 
-
+<?php
+include __DIR__ . '/footer.php';
+?>

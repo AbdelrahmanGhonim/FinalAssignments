@@ -34,12 +34,10 @@ class User implements \JsonSerializable{
         public function setPassword($password) {
      
             if(empty($password) || password_needs_rehash($password, PASSWORD_BCRYPT)){
-               // echo "the password is empty ";
                 $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
                 $this->password = $hashedPassword;
             }
             else{
-               // echo "the password is not Empty and does not need to be rehashed ";
                 $this->password = $password;
             }
 

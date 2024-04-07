@@ -1,4 +1,5 @@
 // can you implement the get request to the api here?
+
 function loadData() {
   fetch("http://localhost/api/nutritionFact")
     .then((response) => response.json())
@@ -121,9 +122,7 @@ function loadWorkout() {
     .then((data) => {
       console.log("API Response:", data);
 
-      if (data.length > 0) {
-        displayWorkouts(data);
-      }
+      displayWorkouts(data);
     })
     .catch((error) => {
       console.error("Error fetching items:", error);
@@ -164,8 +163,9 @@ function displayWorkouts(workouts) {
               throw new Error("Network response was not ok");
             }
             alert("Workout completed!");
-            // removeWorkoutFromUI(li);
-            loadWorkout();
+
+            // Call loadWorkout inside the then method
+            return loadWorkout();
           })
           .catch((error) => {
             console.error("Error:", error);
@@ -274,12 +274,12 @@ function displayNutritionInfo(data) {
 
     // Create icon element
     const icon = document.createElement("i");
-    icon.classList.add("fa", "fa-plus"); 
-    icon.style.cursor = "pointer"; 
-    icon.style.backgroundColor = "orange";  
+    icon.classList.add("fa", "fa-plus");
+    icon.style.cursor = "pointer";
+    icon.style.backgroundColor = "orange";
     icon.style.padding = "5px";
     icon.style.borderRadius = "50%";
-    icon.style.marginLeft = "10px"; 
+    icon.style.marginLeft = "10px";
     icon.onclick = () => addFood(recipe); // Set onclick function to add food
 
     // Add recipe information
@@ -306,13 +306,23 @@ document.querySelector(".closef").addEventListener("click", function () {
 });
 
 ///////////////////////Fetching the User food choice//////////////////////////
-
+let foods = [];
 function loadUserFood() {
+  foods = [];
   // This function already returns a promise due to the fetch call
   return fetch("http://localhost/api/nutritionFact/getUserFood")
     .then((response) => response.json())
     .then((data) => {
+      foods = data;
       console.log("API Response:", data);
+      const editButton = document.getElementById("editButton"); // Make sure to get a reference to the edit button
+
+      // Enable or disable the edit button based on whether there is user food in the table
+      if (foods.length > 0) {
+        editButton.disabled = false;
+      } else {
+        editButton.disabled = true;
+      }
 
       if (data.length > 0) {
         displayUserFood(data);
@@ -322,29 +332,15 @@ function loadUserFood() {
       console.error("Error fetching items:", error);
     });
 }
-
 function displayUserFood(data) {
   const tbody = document
     .getElementById("nutritionTable")
     .querySelector("tbody");
-    const editButton = document.getElementById("editButton"); // Make sure to get a reference to the edit button
 
-
-  // Enable or disable the edit button based on whether there is user food in the table
-  if (data.length > 0) {
-    editButton.disabled = false;
-    editButton.style.backgroundColor = "";
-    editButton.style.opacity = ""; // TODO: Add your styles here
-  } else {
-    editButton.disabled = true;
-    editButton.style.backgroundColor = "gray";
-    editButton.style.opacity = "0.1";
-  }
   // Directly append new data to the table body without clearing it
   data.forEach((item) => {
     const row = document.createElement("tr");
     Object.keys(item).forEach((key) => {
-      // Exclude any headers you don't want to display in the table
       const headersToExclude = ["food_id", "goal_id", "id"];
       if (!headersToExclude.includes(key)) {
         const td = document.createElement("td");
@@ -355,14 +351,12 @@ function displayUserFood(data) {
     const deleteButton = document.createElement("button");
     deleteButton.className = "btn  delete-button";
     deleteButton.innerHTML = '<i class="fas fa-trash"></i>';
-    deleteButton.style.display = "none"; // Hide the delete button initially
-    deleteButton.style.backgroundColor = "red"; // Make the button background red
+    deleteButton.style.display = "none";
+    deleteButton.style.backgroundColor = "red";
 
     deleteButton.addEventListener("click", function () {
-      // Send delete request
-      const foodId = item.id; // Assuming each item has a 'food_id' property
-      // console.log(item);
-      // console.log(userId);
+      const foodId = item.id;
+
       fetch(`http://localhost/api/nutritionFact/deleteUserFood`, {
         method: "DELETE",
         headers: {
@@ -374,8 +368,9 @@ function displayUserFood(data) {
           if (!response.ok) {
             throw new Error("Network response was not ok");
           }
-          // Remove row from table
           row.remove();
+
+          initializeDataLoad();
         })
         .catch((error) => {
           console.error("Error:", error);
@@ -418,7 +413,15 @@ function addFood(recipe) {
     fats: recipe.totalNutrients.FAT.quantity.toFixed(2),
     fibers: recipe.totalNutrients.FIBTG.quantity.toFixed(2),
   };
+  // Check if the food already exists in the foods array
+  const foodExists = foods.some(
+    (food) => food.foodname === foodDetails.foodname
+  );
 
+  if (foodExists) {
+    alert("This food is already in the Table!");
+    return;
+  }
   // Define the POST request options
   const options = {
     method: "POST",
@@ -445,50 +448,6 @@ function addFood(recipe) {
       console.error("Error adding food:", error);
     });
 }
-
-// Add an edit button to your HTML
-
-// let deleteMode = false;
-
-// editButton.addEventListener('click', function() {
-//   deleteMode = !deleteMode; // Toggle delete mode
-
-//   // Get all rows in the table
-//   const rows = document.querySelectorAll('#nutritionTable tbody tr');
-
-//   rows.forEach(row => {
-//     // If in delete mode, add delete button, otherwise remove it
-//     if (deleteMode) {
-//       const deleteButton = document.createElement('button');
-//       deleteButton.textContent = 'Delete';
-//       deleteButton.addEventListener('click', function() {
-//         // Send delete request
-//         const foodId = row.getAttribute('data-food-id'); // Assuming each row has a 'data-food-id' attribute
-
-//         fetch(`http://localhost/api/nutritionFact/deleteUserFood`, {
-//           method: 'DELETE',
-//         })
-//         .then(response => {
-//           if (!response.ok) {
-//             throw new Error('Network response was not ok');
-//           }
-//           // Remove row from table
-//           row.remove();
-//         })
-//         .catch(error => {
-//           console.error('Error:', error);
-//         });
-//       });
-
-//       row.appendChild(deleteButton);
-//     } else {
-//       const deleteButton = row.querySelector('button');
-//       if (deleteButton) {
-//         row.removeChild(deleteButton);
-//       }
-//     }
-//   });
-// });
 
 async function initializeDataLoad() {
   try {

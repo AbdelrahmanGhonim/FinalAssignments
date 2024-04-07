@@ -5,45 +5,46 @@ use App\Repositories\NutritionFactRepository;
 use App\Models\GoalEnum;
 use App\Models\NutritionFact;
 
-class NutritionFactsService{
+class NutritionFactsService
+{
 
     private $nutritionFactRepository;
     public function __construct()
     {
-        $this->nutritionFactRepository=new NutritionFactRepository();
+        $this->nutritionFactRepository = new NutritionFactRepository();
     }
-  
+
     public function processUserGoal($userGoal)
     {
-      $goalId = 0;
+        $goalId = 0;
         switch ($userGoal) {
             case GoalEnum::LOSE_WEIGHT:
 
-            //  echo "lose weight";
+                //  echo "lose weight";
                 $foods = $this->nutritionFactRepository->getFoodsByUserGoal($goalId);
-             
+
                 break;
             case GoalEnum::MAINTAIN_WEIGHT:
-             // echo "maintain weight";
-              $goalId=1 ;
+                $goalId = 1;
                 $foods = $this->nutritionFactRepository->getFoodsByUserGoal($goalId);
-               // echo GoalEnum::MAINTAIN_WEIGHT." in service!!    ";
+
 
                 break;
             case GoalEnum::BUILD_MUSCLE:
-              //echo "build muscle Because you are a beast!   ";
-              $goalId=2 ;
+
+                $goalId = 2;
                 $foods = $this->nutritionFactRepository->getFoodsByUserGoal($goalId);
                 break;
             default:
-                // Handle default case
+
                 $foods = $this->nutritionFactRepository->getFoodsByUserGoal($goalId);
                 break;
         }
         return $foods;
     }
 
-    public function getUserFoodChoice($userId){
+    public function getUserFoodChoice($userId)
+    {
 
         return $this->nutritionFactRepository->getUserFood($userId);
     }
@@ -54,7 +55,7 @@ class NutritionFactsService{
             $nutritionFact = $this->convertArrayToNutritionFact($nutritionFact);
             $this->nutritionFactRepository->addUserFood($nutritionFact);
         } catch (\Exception $e) {
-            // Handle the exception (log, show an error message, etc.)
+
             throw new \Exception('Error adding user food: ' . $e->getMessage());
         }
     }
@@ -64,7 +65,7 @@ class NutritionFactsService{
         try {
             $this->nutritionFactRepository->DeleteUserFood($foodId);
         } catch (\Exception $e) {
-            // Handle the exception (log, show an error message, etc.)
+
             throw new \Exception('Error deleting user food: ' . $e->getMessage());
         }
     }
@@ -92,5 +93,5 @@ class NutritionFactsService{
 
         return $nutritionFact;
     }
-    
+
 }

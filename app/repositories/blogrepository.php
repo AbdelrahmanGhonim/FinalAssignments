@@ -1,4 +1,4 @@
-<?php   
+<?php
 
 namespace App\Repositories;
 
@@ -6,7 +6,8 @@ use App\Models\Blog;
 
 use PDO;
 
-class BlogRepository extends Repository{
+class BlogRepository extends Repository
+{
 
     public function getAll()
     {

@@ -96,12 +96,11 @@ class UserRepository extends Repository
             throw new \PDOException('Error updating user information: ' . $e->getMessage());
         }
     }
-    public function deleteUser(User $user) //TODO: Add a method to delete anything related to the user because of the foreign key constraints
+    public function deleteUser(User $user)
     {
         try {
             $this->DeleteUserFood($user->getUserId());
             $this->deleteUserWorkout($user->getUserId());
-            // Use a prepared statement to delete the user by username
             $stmt = $this->connection->prepare("DELETE FROM users WHERE id = :id");
             $userId = $user->getUserId();
             $stmt->bindParam(':id', $userId, PDO::PARAM_STR);

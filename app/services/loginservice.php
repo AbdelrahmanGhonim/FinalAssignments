@@ -11,7 +11,6 @@ class LoginService{
     public function __construct()
     {
         $this->loginRepository=new LoginRepository();
-       // echo "LoginService layer in the house";
     }
     public function authenticateUser($username, $password) //service layer
     {

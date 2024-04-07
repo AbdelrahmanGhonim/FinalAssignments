@@ -94,18 +94,18 @@ include __DIR__ . '/header.php';
                 </button>
             </div>
 
-                <table class="table" id="nutritionTable">
-                    <thead>
-                        <tr>
+            <table class="table" id="nutritionTable">
+                <thead>
+                    <tr>
                         <th>Actions</th>
 
-                        </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
-            </div>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
         </div>
+    </div>
 
 
 

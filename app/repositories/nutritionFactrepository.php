@@ -4,28 +4,29 @@ namespace App\Repositories;
 use App\Models\NutritionFact;
 use PDO;
 
-class NutritionFactRepository extends Repository{
+class NutritionFactRepository extends Repository
+{
 
-  public function getFoodsByUserGoal($goalId)
-  {
-   
-      try {
-          $stmt = $this->connection->prepare("
+    public function getFoodsByUserGoal($goalId)
+    {
+
+        try {
+            $stmt = $this->connection->prepare("
               SELECT food_id, food_name, carbs, proteins, fats, fibers, goal_id
               FROM nutrition_facts
               WHERE goal_id = :goalId
           ");
-          $stmt->bindParam(':goalId', $goalId, PDO::PARAM_INT);
-          
-          $stmt->execute();
+            $stmt->bindParam(':goalId', $goalId, PDO::PARAM_INT);
 
-          $foods = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $stmt->execute();
 
-          return $foods;
-      } catch (\PDOException $e) {
-          // Handle the exception (log, show an error message, etc.)
-         throw new \PDOException('Error getting foods by goal id: ' . $e->getMessage());
-      }
+            $foods = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            return $foods;
+        } catch (\PDOException $e) {
+            // Handle the exception (log, show an error message, etc.)
+            throw new \PDOException('Error getting foods by goal id: ' . $e->getMessage());
+        }
     }
 
     public function getUserFood($userId)
@@ -50,9 +51,8 @@ class NutritionFactRepository extends Repository{
 
     public function addUserFood(NutritionFact $nutritionFact)
     {
-        try
-        {
-            $stmt=$this->connection->prepare("INSERT INTO userfood (userId,foodname,carbs,proteins,fats,fibers) VALUES (:userId, :foodname, :carbs, :proteins, :fats, :fibers)");
+        try {
+            $stmt = $this->connection->prepare("INSERT INTO userfood (userId,foodname,carbs,proteins,fats,fibers) VALUES (:userId, :foodname, :carbs, :proteins, :fats, :fibers)");
             $params = [
                 ':userId' => $nutritionFact->getUserId(),
                 ':foodname' => $nutritionFact->getFoodName(),
@@ -63,7 +63,7 @@ class NutritionFactRepository extends Repository{
             ];
             $stmt->execute($params);
             return true;
-        }catch (\PDOException $e) {
+        } catch (\PDOException $e) {
             error_log('Error creating user food: ' . $e->getMessage());
             return false;
         }
@@ -71,16 +71,15 @@ class NutritionFactRepository extends Repository{
 
     public function DeleteUserFood($foodId)
     {
-        try
-        {
+        try {
             $stmt = $this->connection->prepare("
                 DELETE FROM userfood
                 WHERE id = :id
             ");
-            $stmt->bindParam(':id',$foodId, PDO::PARAM_INT);
+            $stmt->bindParam(':id', $foodId, PDO::PARAM_INT);
             $stmt->execute();
             return true;
-        }catch (\PDOException $e) {
+        } catch (\PDOException $e) {
             error_log('Error deleting user food: ' . $e->getMessage());
             return false;
         }

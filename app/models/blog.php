@@ -62,8 +62,6 @@ class Blog implements \JsonSerializable
         if (in_array($contentType, $allContentType)) {
             $this->contentType = $contentType;
         } else {
-            // Handle invalid goal (you can throw an exception, set a default, etc.)
-            // For now, I'll set a default value
             $this->contentType =ContentEnum::WORKOUT;
         }
     }
