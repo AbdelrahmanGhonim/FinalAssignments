@@ -1,28 +1,21 @@
-# PMS FIT - Fitness Website
+# PMS FIT - Your Personalized Fitness Companion
 
-Welcome to PMS FIT, your personalized fitness companion! This web application is designed to help you stay in shape, support your journey to a healthier lifestyle, and track your progress effectively.
+Welcome to PMS FIT, the ultimate platform to support your fitness journey! This web application is meticulously designed to help you maintain your fitness, adopt a healthier lifestyle, and efficiently monitor your progress.
 
 ## Getting Started
 
-1. **Signup:** Create your account on the signup page. Fill in the required details to get started.
+1. **Signup:** Begin your journey by creating an account on our signup page. Fill in the necessary details to get started.
 
-2. **Login:** Once your account is created, log in to access the features of PMS FIT. 
+2. **Login:** Once your account is created, log in to access the full features of PMS FIT.
 
-3. **Progress Tracker:** Navigate to the Progress Tracker page. Here, you can view essential information about your fitness journey, including calories intake, goal, and weight.
+3. **Progress Tracker:** Head to the Progress Tracker page to access vital information about your fitness journey, including calorie intake, goals, and weight.
 
-4. **Nutrition Guidance:** Scroll down on the Progress Tracker page to find a table that provides personalized nutrition guidance based on your fitness goal and this table change based on your goal,whether you aim to lose weight, gain muscle, or maintain weight, the recommended foods will align with your objectives.
+4. **Nutrition Guidance:** Scroll down on the Progress Tracker page to explore our updated nutrition guidance feature. Now, you can access a diverse array of over ten thousand foods through the Edamam API. Customize your nutrition plan based on your fitness goals, whether it's weight loss, muscle gain, or weight maintenance. The recommended foods will align with your objectives, ensuring you have the right dietary choices throughout your journey. Please note that the website will provide 5 to 6 curated nutrition guidance options, ensuring that users include the correct foods aligned with their goals, and these recommendations cannot be altered for accuracy and effectiveness.
 
-5. **Profile Management:**
-    - **Edit Profile:** Modify your profile information, such as age, gender, weight, and more.
-    - **Delete Account:** If needed, you can delete your account to reset your fitness journey.
+5. **Workout List:** We've introduced a new functionality - the Workout List. Now, you can easily access and track your workout routines step by step. Stay organized and motivated as you progress towards your fitness goals.
 
-6. **Logout:** Safely logout when you're done using the application.
+6. **Profile Management:**
+    - **Edit Profile:** Personalize your profile information, including age, gender, weight, and more.
+    - **Delete Account:** If necessary, you have the option to delete your account to reset your fitness journey.
 
-
- ## Important Notice
-
-**Attention:** After I finished doing the project I forgot to make the SQL file and after I did it, I adjusted the docker-compose as well to initialize the SQL file directly once the docker ran, but I checked the code on a different machine and the database doesn't load, I am sorry if you faced this problem, in the worst case can you import the file 🙏.
-
-Edamam is a food information API that allows users to access a wealth of data about food and diet. With this API, users can easily incorporate food and diet information into their own applications, websites, and products. The API is listed on Worldindata, making it easy for users to find and use.30 Oct 2023
-
-
+7. **Logout:** Ensure the security of your account by logging out when you've finished using the application.
